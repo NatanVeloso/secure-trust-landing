@@ -75,36 +75,45 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 215 100% 6%;
-    --foreground: 0 0% 100%;
+    --background: 220 40% 8%;
+    --foreground: 0 0% 98%;
 
-    --card: 215 100% 8%;
-    --card-foreground: 0 0% 100%;
+    --card: 218 38% 12%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 215 100% 8%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 218 38% 10%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 211 100% 50%;
+    --primary: 211 100% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 195 100% 50%;
+    --secondary: 195 100% 55%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 215 20% 20%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 218 30% 18%;
+    --muted-foreground: 215 15% 65%;
 
     --accent: 195 100% 50%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 63% 31%;
+    --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 215 20% 20%;
-    --input: 215 20% 20%;
-    --ring: 211 100% 50%;
+    --border: 218 30% 20%;
+    --input: 218 30% 18%;
+    --ring: 211 100% 55%;
     
-    --gradient-hero: linear-gradient(135deg, hsl(211 100% 50%) 0%, hsl(195 100% 50%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(215 100% 8%) 0%, hsl(215 100% 10%) 100%);
+    /* Dark mode gradients - preto azulado */
+    --gradient-hero: linear-gradient(135deg, hsl(220 45% 12%) 0%, hsl(215 50% 18%) 50%, hsl(211 100% 25%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(218 38% 12%) 0%, hsl(220 40% 15%) 100%);
+    --gradient-dark-bg: linear-gradient(180deg, hsl(220 40% 8%) 0%, hsl(218 45% 10%) 50%, hsl(220 40% 8%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(211 100% 30%) 0%, hsl(195 100% 35%) 100%);
+    
+    /* Dark mode shadows with blue tint */
+    --shadow-sm: 0 2px 12px hsl(211 100% 25% / 0.3);
+    --shadow-md: 0 4px 20px hsl(211 100% 25% / 0.4);
+    --shadow-lg: 0 8px 40px hsl(211 100% 25% / 0.5);
+    --shadow-cta: 0 8px 32px hsl(211 100% 40% / 0.6);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -125,6 +134,11 @@ All colors MUST be HSL.
     @apply bg-background text-foreground font-sans antialiased;
   }
   
+  .dark body {
+    background: var(--gradient-dark-bg);
+    background-attachment: fixed;
+  }
+  
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading;
   }
@@ -139,11 +153,26 @@ All colors MUST be HSL.
     background: var(--gradient-card);
   }
   
+  .gradient-accent {
+    background: var(--gradient-accent);
+  }
+  
   .shadow-cta {
     box-shadow: var(--shadow-cta);
   }
   
   .transition-base {
     transition: var(--transition-base);
+  }
+  
+  /* Dark mode glow effects */
+  .dark .glow-primary {
+    box-shadow: 0 0 20px hsl(211 100% 40% / 0.3), 
+                0 0 40px hsl(211 100% 40% / 0.2);
+  }
+  
+  .dark .glow-card {
+    box-shadow: 0 4px 20px hsl(211 100% 25% / 0.4),
+                0 0 60px hsl(211 100% 30% / 0.1);
   }
 }

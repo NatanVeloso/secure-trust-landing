@@ -13,11 +13,11 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 gradient-hero opacity-10"></div>
+      <div className="absolute inset-0 gradient-hero opacity-10 dark:opacity-20"></div>
       
       {/* Decorative shapes */}
-      <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+      <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl dark:bg-primary/10"></div>
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-secondary/5 rounded-full blur-3xl dark:bg-secondary/10"></div>
 
       <div className="container relative z-10 grid lg:grid-cols-2 gap-12 items-center py-20 px-4">
         {/* Content */}
@@ -43,7 +43,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 items-start">
             <Button
               size="lg"
-              className="shadow-cta hover:scale-105 transition-all text-lg h-14 px-8"
+              className="shadow-cta hover:scale-105 transition-all text-lg h-14 px-8 dark:glow-primary"
               asChild
             >
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
@@ -52,7 +52,7 @@ const Hero = () => {
               </a>
             </Button>
 
-            <div className="flex items-center gap-3 bg-card p-4 rounded-lg border shadow-sm">
+            <div className="flex items-center gap-3 bg-card p-4 rounded-lg border shadow-sm dark:glow-card dark:bg-card/50 dark:backdrop-blur-sm">
               <img
                 src={reclameAqui}
                 alt="Selo Reclame AQUI"
@@ -84,11 +84,11 @@ const Hero = () => {
 
         {/* Image */}
         <div className="relative lg:block hidden animate-fade-in">
-          <div className="absolute -inset-4 gradient-hero opacity-20 blur-2xl rounded-3xl"></div>
+          <div className="absolute -inset-4 gradient-hero opacity-20 blur-2xl rounded-3xl dark:opacity-40"></div>
           <img
             src={heroImage}
             alt="Família protegida com seguro"
-            className="relative rounded-3xl shadow-2xl w-full object-cover"
+            className="relative rounded-3xl shadow-2xl w-full object-cover dark:glow-card"
           />
         </div>
       </div>
