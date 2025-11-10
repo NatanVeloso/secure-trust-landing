@@ -67,15 +67,16 @@ const ContactForm = () => {
   const formAnim = useScrollAnimation(0.1);
 
   return (
-    <section id="contato" className="py-24 bg-background ">
+    <section id="contato" className="py-24 bg-background overflow-x-hidden">
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto w-full">
           {/* Contact Info */}
           <div
             ref={contactInfo.ref}
-            className={`space-y-8 transition-all duration-700 ${
-              contactInfo.isVisible ? 'opacity-100 -translate-x-0' : 'opacity-0 -translate-x-12'
-            }`}
+            className={`space-y-8 transition-all duration-700 ${contactInfo.isVisible
+              ? "opacity-100 -translate-x-0"
+              : "opacity-0 -translate-x-12"
+              }`}
           >
             <div className="space-y-4">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-4">
@@ -140,11 +141,13 @@ const ContactForm = () => {
           {/* Form */}
           <div
             ref={formAnim.ref}
-            className={`bg-card p-8 rounded-2xl border-2 shadow-lg transition-all duration-700 ${
-              formAnim.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
-            }`}
+            className={`bg-card p-8 rounded-2xl border-2 shadow-lg transition-all duration-700 ${formAnim.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
+              }`}
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-6 w-full max-w-full overflow-hidden"
+            >
               <div className="space-y-2">
                 <Label htmlFor="name">Nome completo *</Label>
                 <Input
