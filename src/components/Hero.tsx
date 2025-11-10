@@ -21,6 +21,14 @@ const Hero = () => {
       {/* Background gradient */}
       <div className="absolute inset-0 gradient-hero opacity-10 dark:opacity-20"></div>
       
+      {/* Animated Shield Background */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <Shield 
+          className="w-[600px] h-[600px] text-primary/5 dark:text-primary/10 animate-spin-slow" 
+          strokeWidth={0.5}
+        />
+      </div>
+      
       {/* Decorative shapes */}
       <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl dark:bg-primary/10"></div>
       <div className="absolute bottom-20 left-10 w-96 h-96 bg-secondary/5 rounded-full blur-3xl dark:bg-secondary/10"></div>
