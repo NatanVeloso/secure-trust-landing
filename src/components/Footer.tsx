@@ -1,6 +1,8 @@
+import logo from "@/assets/logo.png";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Mail, MapPin, Phone } from "lucide-react";
-import logo from "@/assets/logo.png";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Footer = () => {
@@ -12,18 +14,24 @@ const Footer = () => {
 
   const content = useScrollAnimation(0.1);
 
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <footer className="bg-foreground text-background">
       <div className="container mx-auto px-4 py-16">
         <div
           ref={content.ref}
-          className={`grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12 transition-all duration-700 ${
-            content.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-          }`}
+          className={`grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12 transition-all duration-700 ${content.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+            }`}
         >
           {/* Company Info */}
           <div className="space-y-4">
-            <img src={logo} alt="SEG X Seguros" className="h-12 w-auto brightness-0 invert" />
+            <img src={logo} alt="SegX Seguros" className={`h-12 w-auto ${mounted && theme === "light" ? "brightness-0 invert" : ""}`} />
             <p className="text-background/70 text-sm leading-relaxed">
               Protegendo o que é importante para você há mais de 15 anos com
               transparência e compromisso.
@@ -58,6 +66,11 @@ const Footer = () => {
                   Depoimentos
                 </a>
               </li>
+               <li>
+                <a href="#faq" className="text-background/70 hover:text-background transition-colors">
+                  Faq
+                </a>
+              </li>
               <li>
                 <a href="#contato" className="text-background/70 hover:text-background transition-colors">
                   Contato
@@ -71,22 +84,22 @@ const Footer = () => {
             <h3 className="font-semibold text-lg mb-4">Serviços</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="text-background/70 hover:text-background transition-colors">
+                <a href="#servicos" className="text-background/70 hover:text-background transition-colors">
                   Seguro Auto
                 </a>
               </li>
               <li>
-                <a href="#" className="text-background/70 hover:text-background transition-colors">
+                <a href="#servicos" className="text-background/70 hover:text-background transition-colors">
                   Seguro Residencial
                 </a>
               </li>
               <li>
-                <a href="#" className="text-background/70 hover:text-background transition-colors">
+                <a href="#servicos" className="text-background/70 hover:text-background transition-colors">
                   Seguro de Vida
                 </a>
               </li>
               <li>
-                <a href="#" className="text-background/70 hover:text-background transition-colors">
+                <a href="#servicos" className="text-background/70 hover:text-background transition-colors">
                   Seguro Empresarial
                 </a>
               </li>
@@ -103,16 +116,28 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span className="text-background/70">contato@segxseguros.com.br</span>
+                <span className="text-background/70">atendimento@segxseguros.com.br</span>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
                 <span className="text-background/70">
-                  Av. Paulista, 1000 - Sala 100<br />
-                  São Paulo, SP - 01310-100
+                  Av. Presidente Castelo Branco, 3806 - Sala 1302A<br />
+                  Umuarama, PR - CEP 87501-170
                 </span>
               </li>
             </ul>
+            <div className="mt-4">
+              <iframe
+                src="https://maps.google.com/maps?q=Av.+Presidente+Castelo+Branco+3806+Umuarama+PR&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="200"
+                style={{ border: 0, borderRadius: '0.5rem' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Localização SegX Seguros"
+              />
+            </div>
           </div>
         </div>
 
@@ -120,7 +145,7 @@ const Footer = () => {
         <div className="pt-8 border-t border-background/20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-background/70">
             <div className="flex flex-wrap justify-center gap-4">
-              <p>CNPJ: 12.345.678/0001-90</p>
+              <p>CNPJ: 63.117.957/0001-32</p>
               <p>•</p>
               <p>SUSEP: 12345.678901/2023-45</p>
             </div>
@@ -134,7 +159,7 @@ const Footer = () => {
             </div>
           </div>
           <p className="text-center mt-6 text-background/70 text-sm">
-            © {new Date().getFullYear()} SEG X Seguros. Todos os direitos reservados.
+            © {new Date().getFullYear()} SegX Seguros. Todos os direitos reservados.
           </p>
         </div>
       </div>

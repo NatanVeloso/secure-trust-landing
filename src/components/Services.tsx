@@ -31,7 +31,7 @@ const services = [
 ];
 
 const Services = () => {
-  const whatsappNumber = "5511999999999"; // Replace with actual number
+  const whatsappNumber = "5511999999999";
   
   const handleServiceClick = (service: string) => {
     const message = encodeURIComponent(
@@ -44,8 +44,44 @@ const Services = () => {
   const info = useScrollAnimation(0.1);
 
   return (
-    <section id="servicos" className="py-24 bg-muted/30">
-      <div className="container mx-auto px-4">
+    <section id="servicos" className="relative py-24 bg-background overflow-hidden">
+      {/* Elementos decorativos de background */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Círculos concêntricos top-right */}
+        <div className="absolute -top-3122 -right-32 w-96 h-96">
+          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 to-transparent blur-3xl"></div>
+          <div className="absolute inset-12 rounded-full bg-gradient-to-br from-primary/5 to-transparent blur-2xl"></div>
+          <div className="absolute inset-24 rounded-full border border-primary/10"></div>
+        </div>
+        
+        {/* Círculos concêntricos bottom-left */}
+        <div className="absolute -bottom-1 -left-32 w-[500px] h-[500px]">
+          <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-secondary/10 to-transparent blur-3xl"></div>
+          <div className="absolute inset-16 rounded-full bg-gradient-to-tr from-secondary/5 to-transparent blur-2xl"></div>
+          <div className="absolute inset-32 rounded-full border border-secondary/10"></div>
+        </div>
+
+        {/* Círculo médio flutuante */}
+        <div className="absolute top-1/2 right-1/4 w-64 h-64 opacity-30">
+          <div className="absolute inset-0 rounded-full border-2 border-primary/20 animate-pulse"></div>
+          <div className="absolute inset-8 rounded-full border border-primary/10"></div>
+        </div>
+
+        {/* Forma geométrica rotacionada */}
+        <div className="absolute bottom-1/4 right-10 w-40 h-40 border border-primary/10 rotate-45 opacity-50"
+             style={{ borderRadius: '30%' }}>
+        </div>
+
+        {/* Grid de pontos sutis */}
+        <div className="absolute inset-0 opacity-[0.03]"
+             style={{
+               backgroundImage: 'radial-gradient(circle, currentColor 1.5px, transparent 1.5px)',
+               backgroundSize: '40px 40px'
+             }}>
+        </div>
+      </div>
+
+      <div className="container relative z-10 mx-auto px-4">
         <div
           ref={header.ref}
           className={`text-center max-w-3xl mx-auto mb-16 space-y-4 transition-all duration-700 ${

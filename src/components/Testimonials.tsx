@@ -26,7 +26,7 @@ const testimonials = [
     role: "Professora",
     location: "Belo Horizonte, MG",
     content:
-      "Já tinha seguro em outra empresa, mas a SEG X ofereceu condições muito melhores e um atendimento personalizado. Fiz a troca e não me arrependo!",
+      "Já tinha seguro em outra empresa, mas a SegX ofereceu condições muito melhores e um atendimento personalizado. Fiz a troca e não me arrependo!",
     rating: 5,
     avatar: "AC",
   },
@@ -37,7 +37,7 @@ const Testimonials = () => {
   const stats = useScrollAnimation(0.1);
 
   return (
-    <section id="depoimentos" className="py-24 bg-muted/30">
+    <section id="depoimentos" className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div
           ref={header.ref}
@@ -53,7 +53,7 @@ const Testimonials = () => {
             O que nossos clientes dizem
           </h2>
           <p className="text-xl text-muted-foreground">
-            A confiança de milhares de clientes satisfeitos em todo o Brasil
+            A confiança de nossos clientes satisfeitos em todo o Brasil
           </p>
         </div>
 
@@ -130,7 +130,15 @@ const Testimonials = () => {
             <p className="text-sm text-muted-foreground">Anos de experiência</p>
           </div>
         </div>
+          {/* CTA adicional */}
+        <div className="text-center mt-12">
+          <a href="#contato"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium" >
+            Cote gratuitamente
+          </a>
+        </div>
       </div>
+    
     </section>
   );
 };

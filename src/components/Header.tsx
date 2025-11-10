@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
 import logo from "@/assets/logo.png";
 import ThemeToggle from "./ThemeToggle";
+import { Button } from "@/components/ui/button";
 
 const Header = () => {
   const whatsappNumber = "5511999999999"; // Replace with actual number
@@ -16,7 +16,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex items-center">
-            <img src={logo} alt="SEG X Seguros" className="h-12 w-auto dark:brightness-0 dark:invert" />
+            <img src={logo} alt="SegX Seguros" className="h-12 w-auto dark:brightness-0 dark:invert" />
           </div>
 
           {/* Navigation */}
@@ -38,6 +38,13 @@ const Header = () => {
               className="text-sm font-medium hover:text-primary transition-colors"
             >
               Depoimentos
+            </a>
+
+            <a
+              href="#faq"
+              className="text-sm font-medium hover:text-primary transition-colors"
+            >
+              FAQ
             </a>
             <a
               href="#contato"

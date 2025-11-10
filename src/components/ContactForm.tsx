@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -67,7 +67,7 @@ const ContactForm = () => {
   const formAnim = useScrollAnimation(0.1);
 
   return (
-    <section id="contato" className="py-24 bg-background">
+    <section id="contato" className="py-24 bg-background ">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Info */}
@@ -108,7 +108,7 @@ const ContactForm = () => {
                 </div>
                 <div>
                   <p className="font-semibold mb-1">E-mail</p>
-                  <p className="text-muted-foreground">contato@segxseguros.com.br</p>
+                  <p className="text-muted-foreground">atendimento@segxseguros.com.br</p>
                   <p className="text-sm text-muted-foreground">Respondemos em até 24h</p>
                 </div>
               </div>
@@ -120,8 +120,8 @@ const ContactForm = () => {
                 <div>
                   <p className="font-semibold mb-1">Endereço</p>
                   <p className="text-muted-foreground">
-                    Av. Paulista, 1000 - Sala 100<br />
-                    São Paulo, SP - CEP 01310-100
+                    Av. Presidente Castelo Branco, 3806 - Sala 1302A<br />
+                    Umuarama, PR - CEP 87501-170
                   </p>
                 </div>
               </div>
