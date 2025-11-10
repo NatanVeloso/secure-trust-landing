@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Mail, MapPin, Phone } from "lucide-react";
 import logo from "@/assets/logo.png";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Footer = () => {
   const whatsappNumber = "5511999999999";
@@ -9,10 +10,17 @@ const Footer = () => {
   );
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
+  const content = useScrollAnimation(0.1);
+
   return (
     <footer className="bg-foreground text-background">
       <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div
+          ref={content.ref}
+          className={`grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12 transition-all duration-700 ${
+            content.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+        >
           {/* Company Info */}
           <div className="space-y-4">
             <img src={logo} alt="SEG X Seguros" className="h-12 w-auto brightness-0 invert" />

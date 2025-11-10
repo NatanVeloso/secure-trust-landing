@@ -1,4 +1,5 @@
 import { Award, Clock, FileCheck, HeadphonesIcon, Shield, TrendingUp } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const benefits = [
   {
@@ -34,10 +35,18 @@ const benefits = [
 ];
 
 const WhyChooseUs = () => {
+  const header = useScrollAnimation(0.1);
+  const badges = useScrollAnimation(0.1);
+
   return (
     <section id="sobre" className="py-24 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div
+          ref={header.ref}
+          className={`text-center max-w-3xl mx-auto mb-16 space-y-4 transition-all duration-700 ${
+            header.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/10 rounded-full mb-4">
             <Shield className="w-4 h-4 text-secondary" />
             <span className="text-sm font-medium text-secondary">Por Que Escolher</span>
@@ -53,10 +62,15 @@ const WhyChooseUs = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon;
+            const cardAnim = useScrollAnimation(0.1);
             return (
               <div
                 key={index}
-                className="group p-6 rounded-2xl bg-card border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-lg"
+                ref={cardAnim.ref}
+                className={`group p-6 rounded-2xl bg-card border-2 hover:border-primary/50 transition-all duration-700 hover:shadow-lg ${
+                  cardAnim.isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors">
@@ -75,7 +89,12 @@ const WhyChooseUs = () => {
         </div>
 
         {/* Trust badges */}
-        <div className="mt-16 pt-16 border-t">
+        <div
+          ref={badges.ref}
+          className={`mt-16 pt-16 border-t transition-all duration-700 ${
+            badges.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h3 className="text-center text-2xl font-semibold mb-8">
             Certificações e Parcerias
           </h3>

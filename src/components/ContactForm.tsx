@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -62,12 +63,20 @@ const ContactForm = () => {
     setIsSubmitting(false);
   };
 
+  const contactInfo = useScrollAnimation(0.1);
+  const formAnim = useScrollAnimation(0.1);
+
   return (
     <section id="contato" className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Info */}
-          <div className="space-y-8">
+          <div
+            ref={contactInfo.ref}
+            className={`space-y-8 transition-all duration-700 ${
+              contactInfo.isVisible ? 'opacity-100 -translate-x-0' : 'opacity-0 -translate-x-12'
+            }`}
+          >
             <div className="space-y-4">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-4">
                 <Mail className="w-4 h-4 text-primary" />
@@ -129,7 +138,12 @@ const ContactForm = () => {
           </div>
 
           {/* Form */}
-          <div className="bg-card p-8 rounded-2xl border-2 shadow-lg">
+          <div
+            ref={formAnim.ref}
+            className={`bg-card p-8 rounded-2xl border-2 shadow-lg transition-all duration-700 ${
+              formAnim.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
+            }`}
+          >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <Label htmlFor="name">Nome completo *</Label>

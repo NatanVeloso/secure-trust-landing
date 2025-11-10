@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Car, Home, Heart, Briefcase, Shield, Users } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const services = [
   {
@@ -39,10 +40,18 @@ const Services = () => {
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
   };
 
+  const header = useScrollAnimation(0.1);
+  const info = useScrollAnimation(0.1);
+
   return (
     <section id="servicos" className="py-24 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div
+          ref={header.ref}
+          className={`text-center max-w-3xl mx-auto mb-16 space-y-4 transition-all duration-700 ${
+            header.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-4">
             <Shield className="w-4 h-4 text-primary" />
             <span className="text-sm font-medium text-primary">Nossos Serviços</span>
@@ -58,10 +67,18 @@ const Services = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => {
             const Icon = service.icon;
+            const cardAnim = useScrollAnimation(0.1);
+            const isEven = index % 2 === 0;
             return (
               <Card
                 key={index}
-                className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 gradient-card border-2"
+                ref={cardAnim.ref}
+                className={`group hover:shadow-lg transition-all duration-700 hover:-translate-y-1 gradient-card border-2 ${
+                  cardAnim.isVisible 
+                    ? 'opacity-100 translate-x-0' 
+                    : `opacity-0 ${isEven ? '-translate-x-12' : 'translate-x-12'}`
+                }`}
+                style={{ transitionDelay: `${index * 150}ms` }}
               >
                 <CardHeader>
                   <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-110 transition-all">
@@ -95,7 +112,12 @@ const Services = () => {
         </div>
 
         {/* Additional info */}
-        <div className="mt-16 grid md:grid-cols-3 gap-8 text-center">
+        <div
+          ref={info.ref}
+          className={`mt-16 grid md:grid-cols-3 gap-8 text-center transition-all duration-700 ${
+            info.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <div className="space-y-2">
             <Users className="w-8 h-8 text-primary mx-auto" />
             <h3 className="font-semibold text-lg">Atendimento Personalizado</h3>
