@@ -3,6 +3,7 @@ import reclameAqui from "@/assets/reclame-aqui.png";
 import iconeSemFundo from "@/assets/iconesemfundo.png";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { ArrowRight, Shield, CheckCircle2, Star } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const whatsappNumber = "5511999999999";
@@ -136,10 +137,10 @@ const Hero = () => {
               className="shadow-2xl hover:shadow-primary/50 hover:scale-105 transition-all text-lg h-16 px-10 bg-gradient-to-r from-primary to-primary/90 dark:glow-primary group"
               asChild
             >
-              <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+              <Link to="/cotacao">
                 Faça sua Cotação Grátis
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
+              </Link>
             </Button>
 
             <div className="flex items-center gap-3 bg-card/80 backdrop-blur-md p-4 rounded-xl border-2 shadow-lg hover:shadow-xl transition-all dark:bg-card/50 dark:border-primary/20">
