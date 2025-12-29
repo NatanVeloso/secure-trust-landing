@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { useState, useEffect } from "react";
 import logo from "@/assets/logo.png";
 import ThemeToggle from "./ThemeToggle";
 import { Phone, Menu, X } from "lucide-react";
