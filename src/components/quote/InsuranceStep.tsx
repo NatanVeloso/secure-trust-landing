@@ -2,15 +2,16 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { QuoteFormData } from "@/types/quote";
 import { Button } from "@/components/ui/button";
-import { ShieldCheck, Clock, Calendar, CalendarX2, User, Users, ArrowRight } from "lucide-react";
+import { ShieldCheck, Clock, Calendar, CalendarX2, User, Users, ArrowRight, ArrowLeft } from "lucide-react";
 
 interface InsuranceStepProps {
   formData: QuoteFormData;
   onUpdate: (data: Partial<QuoteFormData>) => void;
   onNext: () => void;
+  onBack: () => void;
 }
 
-const InsuranceStep = ({ formData, onUpdate, onNext }: InsuranceStepProps) => {
+const InsuranceStep = ({ formData, onUpdate, onNext, onBack }: InsuranceStepProps) => {
   const [insuranceStatus, setInsuranceStatus] = useState(formData.insuranceStatus);
   const [quotingFor, setQuotingFor] = useState(formData.quotingFor);
 
@@ -119,7 +120,7 @@ const InsuranceStep = ({ formData, onUpdate, onNext }: InsuranceStepProps) => {
       </motion.div>
 
       {/* Actions */}
-      <motion.div variants={itemVariants}>
+      <motion.div variants={itemVariants} className="space-y-3">
         <Button
           onClick={handleNext}
           disabled={!insuranceStatus || !quotingFor}
@@ -128,6 +129,14 @@ const InsuranceStep = ({ formData, onUpdate, onNext }: InsuranceStepProps) => {
         >
           Continuar
           <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </Button>
+        <Button
+          onClick={onBack}
+          variant="ghost"
+          className="w-full group"
+        >
+          <ArrowLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+          Voltar
         </Button>
       </motion.div>
 

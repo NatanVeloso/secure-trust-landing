@@ -10,15 +10,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ArrowRight, Info } from "lucide-react";
+import { ArrowRight, ArrowLeft, Info } from "lucide-react";
 
 interface ResidenceStepProps {
   formData: QuoteFormData;
   onUpdate: (data: Partial<QuoteFormData>) => void;
   onNext: () => void;
+  onBack: () => void;
 }
 
-const ResidenceStep = ({ formData, onUpdate, onNext }: ResidenceStepProps) => {
+const ResidenceStep = ({ formData, onUpdate, onNext, onBack }: ResidenceStepProps) => {
   const [residenceType, setResidenceType] = useState(formData.residenceType);
   const [hasGarage, setHasGarage] = useState(formData.hasGarage);
   const [studyUsage, setStudyUsage] = useState(formData.studyUsage);
@@ -216,7 +217,7 @@ const ResidenceStep = ({ formData, onUpdate, onNext }: ResidenceStepProps) => {
         )}
 
         {/* Actions */}
-        <motion.div variants={itemVariants} className="pt-4">
+        <motion.div variants={itemVariants} className="pt-4 space-y-3">
           <Button
             onClick={handleNext}
             disabled={
@@ -232,6 +233,14 @@ const ResidenceStep = ({ formData, onUpdate, onNext }: ResidenceStepProps) => {
           >
             Finalizar Questionário
             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Button>
+          <Button
+            onClick={onBack}
+            variant="ghost"
+            className="w-full group"
+          >
+            <ArrowLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            Voltar
           </Button>
         </motion.div>
       </div>

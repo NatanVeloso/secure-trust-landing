@@ -1,14 +1,15 @@
 import { motion } from "framer-motion";
 import { QuoteFormData } from "@/types/quote";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, ClipboardList, Star, Award } from "lucide-react";
+import { MessageCircle, ClipboardList, Star, Award, ArrowLeft } from "lucide-react";
 
 interface ConsultantStepProps {
   formData: QuoteFormData;
   onQar?: () => void;
+  onBack?: () => void;
 }
 
-const ConsultantStep = ({ formData, onQar }: ConsultantStepProps) => {
+const ConsultantStep = ({ formData, onQar, onBack }: ConsultantStepProps) => {
 
   const whatsappNumber = "5544988325210";
 
@@ -143,6 +144,19 @@ const ConsultantStep = ({ formData, onQar }: ConsultantStepProps) => {
             Preencher QAR
           </Button>
         </motion.div>
+
+        {onBack && (
+          <motion.div variants={itemVariants}>
+            <Button
+              onClick={onBack}
+              variant="ghost"
+              className="w-full group"
+            >
+              <ArrowLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              Voltar
+            </Button>
+          </motion.div>
+        )}
       </div>
 
       <motion.p variants={itemVariants} className="text-center text-xs text-muted-foreground mt-6">

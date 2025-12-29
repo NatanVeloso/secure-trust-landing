@@ -23,6 +23,49 @@ const Quote = () => {
     setCurrentStep(nextStep);
   };
 
+  const goToPreviousStep = () => {
+    // Mapeia qual step anterior mostrar baseado no step atual e nas respostas
+    switch (currentStep) {
+      case "ownership":
+        setCurrentStep("welcome");
+        break;
+      case "insurance":
+        setCurrentStep("ownership");
+        break;
+      case "personal":
+        // Se tem veículo, volta para insurance, senão volta para ownership
+        if (formData.vehicleOwnership === "have") {
+          setCurrentStep("insurance");
+        } else {
+          setCurrentStep("ownership");
+        }
+        break;
+      case "vehicle":
+        setCurrentStep("personal");
+        break;
+      case "qar_choice":
+        setCurrentStep("vehicle");
+        break;
+      case "consultant":
+        // Pode vir de qar_choice ou residence
+        if (formData.residenceType) {
+          setCurrentStep("residence");
+        } else {
+          setCurrentStep("qar_choice");
+        }
+        break;
+      case "qar_details":
+        // Pode vir de qar_choice ou do botão "Preencher QAR" no consultant
+        setCurrentStep("qar_choice");
+        break;
+      case "residence":
+        setCurrentStep("qar_details");
+        break;
+      default:
+        break;
+    }
+  };
+
   const pageVariants = {
     initial: { opacity: 0, x: 50, scale: 0.95 },
     animate: { opacity: 1, x: 0, scale: 1 },
@@ -68,6 +111,7 @@ const Quote = () => {
                   goToNextStep("personal");
                 }
               }}
+              onBack={goToPreviousStep}
             />
           )}
           {currentStep === "insurance" && (
@@ -75,6 +119,7 @@ const Quote = () => {
               formData={formData}
               onUpdate={updateFormData}
               onNext={() => goToNextStep("personal")}
+              onBack={goToPreviousStep}
             />
           )}
           {currentStep === "personal" && (
@@ -82,6 +127,7 @@ const Quote = () => {
               formData={formData}
               onUpdate={updateFormData}
               onNext={() => goToNextStep("vehicle")}
+              onBack={goToPreviousStep}
             />
           )}
           {currentStep === "vehicle" && (
@@ -89,18 +135,21 @@ const Quote = () => {
               formData={formData}
               onUpdate={updateFormData}
               onNext={() => goToNextStep("qar_choice")}
+              onBack={goToPreviousStep}
             />
           )}
           {currentStep === "qar_choice" && (
             <QarChoiceStep
               onConsultant={() => goToNextStep("consultant")}
               onQar={() => goToNextStep("qar_details")}
+              onBack={goToPreviousStep}
             />
           )}
           {currentStep === "consultant" && (
             <ConsultantStep
               formData={formData}
               onQar={() => goToNextStep("qar_details")}
+              onBack={goToPreviousStep}
             />
           )}
           {currentStep === "qar_details" && (
@@ -108,6 +157,7 @@ const Quote = () => {
               formData={formData}
               onUpdate={updateFormData}
               onNext={() => goToNextStep("residence")}
+              onBack={goToPreviousStep}
             />
           )}
           {currentStep === "residence" && (
@@ -115,6 +165,7 @@ const Quote = () => {
               formData={formData}
               onUpdate={updateFormData}
               onNext={() => goToNextStep("consultant")}
+              onBack={goToPreviousStep}
             />
           )}
         </motion.div>

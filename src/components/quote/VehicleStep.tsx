@@ -12,15 +12,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 
 interface VehicleStepProps {
   formData: QuoteFormData;
   onUpdate: (data: Partial<QuoteFormData>) => void;
   onNext: () => void;
+  onBack: () => void;
 }
 
-const VehicleStep = ({ formData, onUpdate, onNext }: VehicleStepProps) => {
+const VehicleStep = ({ formData, onUpdate, onNext, onBack }: VehicleStepProps) => {
   const [vehiclePlate, setVehiclePlate] = useState(formData.vehiclePlate || "");
   const [noPlate, setNoPlate] = useState(formData.noPlate || false);
   const [isNew, setIsNew] = useState(formData.isNew || false);
@@ -213,7 +214,7 @@ const VehicleStep = ({ formData, onUpdate, onNext }: VehicleStepProps) => {
         )}
 
         {/* Actions */}
-        <motion.div variants={itemVariants} className="pt-4">
+        <motion.div variants={itemVariants} className="pt-4 space-y-3">
           <Button
             onClick={handleNext}
             disabled={
@@ -228,6 +229,14 @@ const VehicleStep = ({ formData, onUpdate, onNext }: VehicleStepProps) => {
           >
             Continuar
             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Button>
+          <Button
+            onClick={onBack}
+            variant="ghost"
+            className="w-full group"
+          >
+            <ArrowLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            Voltar
           </Button>
         </motion.div>
       </div>

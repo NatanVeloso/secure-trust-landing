@@ -1,14 +1,16 @@
 import { motion } from "framer-motion";
 import { QuoteFormData } from "@/types/quote";
-import { Car, ShoppingCart, Search } from "lucide-react";
+import { Car, ShoppingCart, Search, ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface OwnershipStepProps {
   formData: QuoteFormData;
   onUpdate: (data: Partial<QuoteFormData>) => void;
   onNext: (ownership: "have" | "buying" | "researching") => void;
+  onBack: () => void;
 }
 
-const OwnershipStep = ({ onUpdate, onNext }: OwnershipStepProps) => {
+const OwnershipStep = ({ onUpdate, onNext, onBack }: OwnershipStepProps) => {
   const handleSelect = (ownership: "have" | "buying" | "researching") => {
     onUpdate({ vehicleOwnership: ownership });
     setTimeout(() => onNext(ownership), 300);
@@ -89,9 +91,20 @@ const OwnershipStep = ({ onUpdate, onNext }: OwnershipStepProps) => {
         })}
       </div>
 
+      <motion.div variants={itemVariants} className="mt-6">
+        <Button
+          onClick={onBack}
+          variant="ghost"
+          className="w-full group"
+        >
+          <ArrowLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+          Voltar
+        </Button>
+      </motion.div>
+
       <motion.p
         variants={itemVariants}
-        className="text-center text-sm text-muted-foreground mt-6"
+        className="text-center text-sm text-muted-foreground mt-4"
       >
         Passo 1 de 6
       </motion.p>

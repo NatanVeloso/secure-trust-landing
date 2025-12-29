@@ -4,15 +4,16 @@ import { QuoteFormData } from "@/types/quote";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowRight, User, Phone } from "lucide-react";
+import { ArrowRight, ArrowLeft, User, Phone } from "lucide-react";
 
 interface PersonalStepProps {
   formData: QuoteFormData;
   onUpdate: (data: Partial<QuoteFormData>) => void;
   onNext: () => void;
+  onBack: () => void;
 }
 
-const PersonalStep = ({ formData, onUpdate, onNext }: PersonalStepProps) => {
+const PersonalStep = ({ formData, onUpdate, onNext, onBack }: PersonalStepProps) => {
   const [name, setName] = useState(formData.name || "");
   const [phone, setPhone] = useState(formData.phone || "");
 
@@ -96,7 +97,7 @@ const PersonalStep = ({ formData, onUpdate, onNext }: PersonalStepProps) => {
         </motion.div>
 
         {/* Actions */}
-        <motion.div variants={itemVariants} className="pt-4">
+        <motion.div variants={itemVariants} className="pt-4 space-y-3">
           <Button
             onClick={handleNext}
             disabled={!name || !phone}
@@ -105,6 +106,14 @@ const PersonalStep = ({ formData, onUpdate, onNext }: PersonalStepProps) => {
           >
             Continuar
             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Button>
+          <Button
+            onClick={onBack}
+            variant="ghost"
+            className="w-full group"
+          >
+            <ArrowLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            Voltar
           </Button>
         </motion.div>
       </div>

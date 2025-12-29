@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, ClipboardList } from "lucide-react";
+import { MessageCircle, ClipboardList, ArrowLeft } from "lucide-react";
 
 interface QarChoiceStepProps {
   onConsultant: () => void;
   onQar: () => void;
+  onBack: () => void;
 }
 
-const QarChoiceStep = ({ onConsultant, onQar }: QarChoiceStepProps) => {
+const QarChoiceStep = ({ onConsultant, onQar, onBack }: QarChoiceStepProps) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -71,9 +72,21 @@ const QarChoiceStep = ({ onConsultant, onQar }: QarChoiceStepProps) => {
             Preencher QAR
           </Button>
         </motion.div>
+
+        {/* Voltar */}
+        <motion.div variants={itemVariants} className="mt-2">
+          <Button
+            onClick={onBack}
+            variant="ghost"
+            className="w-full group"
+          >
+            <ArrowLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            Voltar
+          </Button>
+        </motion.div>
       </div>
 
-      <motion.p variants={itemVariants} className="text-center text-sm text-muted-foreground mt-8">
+      <motion.p variants={itemVariants} className="text-center text-sm text-muted-foreground mt-6">
         Passo 5 de 6
       </motion.p>
     </motion.div>
