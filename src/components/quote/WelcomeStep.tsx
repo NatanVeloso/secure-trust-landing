@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Shield, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Shield, ArrowRight, CheckCircle2, Home } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface WelcomeStepProps {
   onNext: () => void;
@@ -79,8 +80,8 @@ const WelcomeStep = ({ onNext }: WelcomeStepProps) => {
         ))}
       </motion.div>
 
-      {/* CTA Button */}
-      <motion.div variants={itemVariants}>
+      {/* CTA Buttons */}
+      <motion.div variants={itemVariants} className="space-y-3">
         <Button
           onClick={onNext}
           size="lg"
@@ -88,6 +89,16 @@ const WelcomeStep = ({ onNext }: WelcomeStepProps) => {
         >
           Vamos Começar
           <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </Button>
+        <Button
+          asChild
+          variant="ghost"
+          className="w-full group"
+        >
+          <Link to="/">
+            <Home className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            Voltar para Home
+          </Link>
         </Button>
       </motion.div>
 

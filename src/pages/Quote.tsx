@@ -66,6 +66,23 @@ const Quote = () => {
     }
   };
 
+  // Calcula o progresso baseado no step atual
+  const getProgress = () => {
+    const progressMap: Record<QuoteStep, number> = {
+      welcome: 0,
+      ownership: 12,
+      insurance: 25,
+      personal: 38,
+      vehicle: 50,
+      qar_choice: 62,
+      qar_details: 75,
+      residence: 87,
+      consultant: 100,
+      final: 100,
+    };
+    return progressMap[currentStep] || 0;
+  };
+
   const pageVariants = {
     initial: { opacity: 0, x: 50, scale: 0.95 },
     animate: { opacity: 1, x: 0, scale: 1 },
@@ -80,6 +97,16 @@ const Quote = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 flex items-center justify-center p-4 overflow-hidden relative">
+      {/* Progress Bar */}
+      <div className="fixed top-0 left-0 right-0 z-50 h-1.5 bg-muted/30 backdrop-blur-sm">
+        <motion.div
+          className="h-full bg-gradient-to-r from-green-500 to-green-600 shadow-lg shadow-green-500/50"
+          initial={{ width: "0%" }}
+          animate={{ width: `${getProgress()}%` }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        />
+      </div>
+
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
