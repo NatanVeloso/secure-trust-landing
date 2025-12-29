@@ -88,20 +88,20 @@ const Hero = () => {
               className={`text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] transition-all duration-700 delay-100 ${title.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
             >
-              Segurança{" "}
+              Tecnologia que{" "}
               <span className="text-primary relative inline-block">
-                inteligente
+                Protege
                 <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary/0 via-primary to-primary/0"></div>
               </span>
               <br />
-              para o seu futuro
+              gente que entende
             </h1>
             <p
               ref={description.ref}
               className={`text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed transition-all duration-700 delay-200 ${description.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
             >
-              Tecnologia, transparência e atendimento humanizado.
+              Transparência e atendimento humanizado.
               <br className="hidden md:block" />
               Proteja sua família, seu patrimônio e seus sonhos com quem entende do assunto.
             </p>
@@ -166,7 +166,7 @@ const Hero = () => {
           >
             <div className="space-y-1">
               <p className="text-4xl md:text-5xl font-bold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent">
-                15+
+                10+
               </p>
               <p className="text-xs md:text-sm text-muted-foreground font-medium">Anos de experiência</p>
             </div>

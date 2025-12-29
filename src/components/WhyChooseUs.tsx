@@ -24,7 +24,7 @@ const benefits = [
   },
   {
     icon: Clock,
-    title: "Cotação Rápida",
+    title: "Cotação Rápida e Gratuita",
     description: "Receba sua cotação em minutos, sem burocracia ou complicação.",
   },
   {
@@ -118,13 +118,15 @@ const WhyChooseUs = () => {
             <div className="text-center space-y-2">
               <Shield className="w-16 h-16 mx-auto text-primary" />
               <p className="text-sm font-medium">SUSEP</p>
-              <p className="text-xs text-muted-foreground">Regulamentado</p>
+              <a href="https://www2.susep.gov.br/safe/menumercado/certidoes/emite_certidoescorretores_2011.asp?id=2993e57d-df59-40d2-b4cf-7592594d0794" target="_blank" rel="noopener noreferrer">
+                <p className="text-xs text-muted-foreground">Regulamentado</p>
+              </a>
             </div>
-            <div className="text-center space-y-2">
+            {/* <div className="text-center space-y-2">
               <Award className="w-16 h-16 mx-auto text-primary" />
               <p className="text-sm font-medium">CNSeg</p>
               <p className="text-xs text-muted-foreground">Associado</p>
-            </div>
+            </div> */}
             <div className="text-center space-y-2">
               <FileCheck className="w-16 h-16 mx-auto text-primary" />
               <p className="text-sm font-medium">CNPJ Ativo</p>

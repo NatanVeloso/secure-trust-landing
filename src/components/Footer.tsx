@@ -121,14 +121,14 @@ const Footer = () => {
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
                 <span className="text-background/70">
-                  Av. Presidente Castelo Branco, 3806 - Sala 1302A<br />
-                  Umuarama, PR - CEP 87501-170
+                  Avenida Paulista, 726, Sala 1202<br />
+                  Bela Vista, São Paulo-SP - CEP 01310-910
                 </span>
               </li>
             </ul>
             <div className="mt-4">
               <iframe
-                src="https://maps.google.com/maps?q=Av.+Presidente+Castelo+Branco+3806+Umuarama+PR&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=Avenida+Paulista+726+Bela+Vista+São+Paulo+SP+01310-910&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="200"
                 style={{ border: 0, borderRadius: '0.5rem' }}

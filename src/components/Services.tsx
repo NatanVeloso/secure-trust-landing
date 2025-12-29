@@ -11,22 +11,22 @@ const services = [
     features: ["Assistência 24h", "Carro reserva", "Cobertura nacional"],
   },
   {
-    icon: Home,
-    title: "Seguro Residencial",
-    description: "Tranquilidade para sua casa e família contra imprevistos e sinistros.",
-    features: ["Incêndio e roubo", "Danos elétricos", "Responsabilidade civil"],
-  },
-  {
     icon: Heart,
     title: "Seguro de Vida",
     description: "Garanta o futuro da sua família com planos flexíveis e coberturas amplas.",
     features: ["Morte e invalidez", "Doenças graves", "Renda mensal"],
   },
   {
+    icon: Home,
+    title: "Seguro Residencial",
+    description: "Tranquilidade para sua casa e família contra imprevistos e sinistros.",
+    features: ["Incêndio e roubo", "Danos elétricos", "Vendaval"],
+  },
+  {
     icon: Briefcase,
     title: "Seguro Empresarial",
     description: "Soluções corporativas para proteger seu negócio e colaboradores.",
-    features: ["Patrimônio", "Responsabilidade", "Vida em grupo"],
+    features: ["Incêndio", "Roubo", "Vendaval"],
   },
 ];
 

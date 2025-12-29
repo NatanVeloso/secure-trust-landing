@@ -126,7 +126,7 @@ const Testimonials = () => {
             <p className="text-sm text-muted-foreground">Taxa de satisfação</p>
           </div>
           <div>
-            <p className="text-4xl font-bold text-primary mb-2">15+</p>
+            <p className="text-4xl font-bold text-primary mb-2">10+</p>
             <p className="text-sm text-muted-foreground">Anos de experiência</p>
           </div>
         </div>
