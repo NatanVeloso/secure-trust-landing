@@ -15,8 +15,8 @@ import allseg from "../assets/parceiros/allseg.png";
 import darwin from "../assets/parceiros/darwin.png";
 import zurich from "../assets/parceiros/zurich.png";
 import allianz from "../assets/parceiros/Allianz.png";
+import ezzeSeguros from "../assets/parceiros/ezze.png";
 import bradesco from "../assets/parceiros/bradesco.png";
-import ezzeSeguros from "../assets/parceiros/Ezze-seguros.png";
 import tokioMarine from "../assets/parceiros/tokio-marine.png";
 import hdiSeguros from "../assets/parceiros/hdi-seguros-logo.png";
 
