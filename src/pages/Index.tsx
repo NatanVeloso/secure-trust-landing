@@ -10,6 +10,7 @@ import ContactForm from "@/components/ContactForm";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Testimonials from "@/components/Testimonials";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import PartnersCarousel from "@/components/PartnersCarousel";
 
 const Index = () => {
 useEffect(() => {
@@ -53,6 +54,7 @@ useEffect(() => {
       <main>
         <Hero />
         <Services />
+        <PartnersCarousel />
         <AboutUs />
         <WhyChooseUs />
         <Testimonials />
