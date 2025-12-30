@@ -35,7 +35,7 @@ const ContactForm = () => {
     }
 
     // Send to WhatsApp
-    const whatsappNumber = "5511999999999"; // Replace with actual number
+    const whatsappNumber = "5544988325210"; // Replace with actual number
     const message = encodeURIComponent(
       `*Nova Cotação via Site*\n\n` +
       `Nome: ${formData.name}\n` +
@@ -98,7 +98,7 @@ const ContactForm = () => {
                 </div>
                 <div>
                   <p className="font-semibold mb-1">Telefone</p>
-                  <p className="text-muted-foreground">(11) 99999-9999</p>
+                  <p className="text-muted-foreground">(44) 988325210</p>
                   <p className="text-sm text-muted-foreground">Seg a Sex, 8h às 18h</p>
                 </div>
               </div>

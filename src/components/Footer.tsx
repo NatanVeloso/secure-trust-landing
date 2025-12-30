@@ -6,7 +6,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Footer = () => {
-  const whatsappNumber = "5511999999999";
+  const whatsappNumber = "5544988325210";
   const whatsappMessage = encodeURIComponent(
     "Olá, gostaria de fazer uma cotação de seguro."
   );
@@ -112,7 +112,7 @@ const Footer = () => {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span className="text-background/70">(11) 99999-9999</span>
+                <span className="text-background/70">(44) 988325210</span>
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />

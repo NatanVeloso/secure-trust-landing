@@ -6,7 +6,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { ArrowRight, Shield, CheckCircle2, Star } from "lucide-react";
 
 const Hero = () => {
-  const whatsappNumber = "5511999999999";
+  const whatsappNumber = "5544988325210";
   const whatsappMessage = encodeURIComponent(
     "Olá, gostaria de fazer uma cotação de seguro."
   );

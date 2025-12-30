@@ -9,7 +9,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isBlurEnabled, setIsBlurEnabled] = useState(true); // controla o blur manualmente
 
-  const whatsappNumber = "5511999999999";
+  const whatsappNumber = "5544988325210";
   const whatsappMessage = encodeURIComponent("Olá, gostaria de fazer uma cotação de seguro.");
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
