@@ -13,25 +13,162 @@ const ConsultantStep = ({ formData, onQar, onBack }: ConsultantStepProps) => {
 
   const whatsappNumber = "5544988325210";
 
+  // Verifica se o usuário já preencheu o QAR
+  const hasCompletedQar = formData.vehicleUsage || formData.residenceType;
+
   const formatWhatsAppMessage = () => {
     let message = "Olá! Gostaria de fazer uma cotação de seguro.\n\n";
     message += "📋 *Dados informados:*\n\n";
 
-    if (formData.name) message += `👤 Nome: ${formData.name}\n`;
-    if (formData.phone) message += `📱 Telefone: ${formData.phone}\n`;
+    // Dados pessoais
+    if (formData.name) message += `👤 *Nome:* ${formData.name}\n`;
+    if (formData.phone) message += `📱 *Telefone:* ${formData.phone}\n\n`;
+
+    // Posse do veículo
     if (formData.vehicleOwnership) {
+      message += "🚗 *POSSE DO VEÍCULO*\n";
       const ownership = {
         have: "Já possuo o veículo",
         buying: "Estou em processo de compra",
         researching: "Estou pesquisando"
       }[formData.vehicleOwnership];
-      message += `🚗 Posse: ${ownership}\n`;
+      message += `${ownership}\n\n`;
     }
-    if (formData.vehiclePlate) message += `🔖 Placa: ${formData.vehiclePlate}\n`;
-    if (formData.zipCode) message += `📍 CEP: ${formData.zipCode}\n`;
-    if (formData.cpf) message += `📄 CPF: ${formData.cpf}\n`;
 
-    message += "\nAguardo contato!";
+    // Situação do seguro
+    if (formData.insuranceStatus) {
+      message += "🛡️ *SITUAÇÃO DO SEGURO*\n";
+      const insurance = {
+        no_insurance: "Ainda não tenho seguro",
+        expiring_soon: "Vence em breve",
+        expiring_3months: "Vence em até 3 meses",
+        expiring_more_3months: "Vence em mais de 3 meses"
+      }[formData.insuranceStatus];
+      message += `${insurance}\n`;
+      if (formData.quotingFor) {
+        message += `Cotando para: ${formData.quotingFor === "me" ? "Mim" : "Outra pessoa"}\n\n`;
+      }
+    }
+
+    // Dados do veículo
+    message += "🚙 *DADOS DO VEÍCULO*\n";
+    if (formData.vehiclePlate) message += `Placa: ${formData.vehiclePlate}\n`;
+    if (formData.noPlate) message += `Não possui placa\n`;
+    if (formData.isNew) message += `Veículo 0 km\n`;
+    if (formData.zipCode) message += `CEP de pernoite: ${formData.zipCode}\n`;
+    if (formData.cpf) message += `CPF do segurado: ${formData.cpf}\n`;
+    if (formData.maritalStatus) {
+      const marital = {
+        single: "Solteiro(a)",
+        married: "Casado(a)",
+        divorced: "Divorciado(a)",
+        widowed: "Viúvo(a)",
+        partner: "Reside com companheiro(a)"
+      }[formData.maritalStatus];
+      message += `Estado civil: ${marital}\n`;
+    }
+    if (formData.isMainDriver === false && formData.mainDriverCpf) {
+      message += `CPF do condutor principal: ${formData.mainDriverCpf}\n`;
+    }
+    message += "\n";
+
+    // QAR - Detalhes do veículo
+    if (formData.vehicleUsage) {
+      message += "📝 *QAR - DETALHES DO VEÍCULO*\n";
+      const usage = {
+        daily: "Particular - Locomoção Diária",
+        leisure: "Particular - Somente para lazer",
+        commercial: "Visitas/representação comercial",
+        taxi: "Táxi",
+        passengers: "Transporte de passageiros",
+        delivery: "Entregas",
+        travel: "Viagens mais de 2x ao mês"
+      }[formData.vehicleUsage];
+      message += `Uso principal: ${usage}\n`;
+
+      if (formData.hasRemarchedChassis) message += `✓ Chassi remarcado\n`;
+      if (formData.isFinanced) message += `✓ Veículo alienado\n`;
+      if (formData.isTuned) message += `✓ Tunado ou rebaixado\n`;
+      if (formData.isArmored) message += `✓ Blindado\n`;
+      if (formData.hasGasKit) message += `✓ Kit gás\n`;
+      if (formData.isAuction) message += `✓ Veículo de leilão\n`;
+
+      if (formData.youngDriverCoverage) {
+        const coverage = {
+          no: "Não",
+          no_drivers: "Não tem condutores menores de 26 anos",
+          under_24: "Sim, menores de 24 anos",
+          not_drive: "Sim, mas não dirige"
+        }[formData.youngDriverCoverage];
+        message += `Cobertura jovem (18-26): ${coverage}\n`;
+      }
+      message += "\n";
+    }
+
+    // Residência e guarda
+    if (formData.residenceType) {
+      message += "🏠 *RESIDÊNCIA E GUARDA*\n";
+      const residence = {
+        house: "Casa/Sobrado",
+        apartment: "Apartamento",
+        condo: "Condomínio de casas",
+        other: "Outro"
+      }[formData.residenceType];
+      message += `Local: ${residence}\n`;
+
+      if (formData.hasGarage) {
+        const garage = {
+          manual: "Garagem com portão manual",
+          automatic: "Garagem com portão automático",
+          private: "Estacionamento privado/pago",
+          no: "Não tem garagem"
+        }[formData.hasGarage];
+        message += `${garage}\n`;
+      }
+
+      if (formData.studyUsage) {
+        const study = {
+          not_use: "Estuda mas não usa o veículo",
+          not_study: "Não estuda",
+          high_school: "Ensino Médio",
+          college: "Ensino Superior",
+          postgrad: "Pós-Graduação",
+          other: "Outros"
+        }[formData.studyUsage];
+        message += `Estudo: ${study}\n`;
+
+        if (formData.studyGarage) {
+          const studyGar = {
+            manual: "Garagem manual no estudo",
+            automatic: "Garagem automática no estudo",
+            private: "Estacionamento privado no estudo",
+            no: "Sem garagem no estudo"
+          }[formData.studyGarage];
+          message += `${studyGar}\n`;
+        }
+      }
+
+      if (formData.workUsage) {
+        const work = {
+          yes: "Usa para trabalho",
+          no: "Não usa para trabalho",
+          not_work: "Não trabalha"
+        }[formData.workUsage];
+        message += `Trabalho: ${work}\n`;
+
+        if (formData.workGarage) {
+          const workGar = {
+            manual: "Garagem manual no trabalho",
+            automatic: "Garagem automática no trabalho",
+            private: "Estacionamento privado no trabalho",
+            no: "Sem garagem no trabalho"
+          }[formData.workGarage];
+          message += `${workGar}\n`;
+        }
+      }
+    }
+
+    message += "\n✅ *Aguardo contato para receber minha cotação!*";
     return encodeURIComponent(message);
   };
 
@@ -127,23 +264,27 @@ const ConsultantStep = ({ formData, onQar, onBack }: ConsultantStepProps) => {
           </Button>
         </motion.div>
 
-        <motion.div variants={itemVariants} className="flex items-center gap-4 py-2">
-          <div className="flex-1 h-px bg-border"></div>
-          <span className="text-sm text-muted-foreground">ou</span>
-          <div className="flex-1 h-px bg-border"></div>
-        </motion.div>
+        {!hasCompletedQar && onQar && (
+          <>
+            <motion.div variants={itemVariants} className="flex items-center gap-4 py-2">
+              <div className="flex-1 h-px bg-border"></div>
+              <span className="text-sm text-muted-foreground">ou</span>
+              <div className="flex-1 h-px bg-border"></div>
+            </motion.div>
 
-        <motion.div variants={itemVariants}>
-          <Button
-            onClick={handleQar}
-            variant="outline"
-            size="lg"
-            className="w-full h-14 text-base group border-2 hover:border-primary"
-          >
-            <ClipboardList className="mr-2 w-5 h-5" />
-            Preencher QAR
-          </Button>
-        </motion.div>
+            <motion.div variants={itemVariants}>
+              <Button
+                onClick={handleQar}
+                variant="outline"
+                size="lg"
+                className="w-full h-14 text-base group border-2 hover:border-primary"
+              >
+                <ClipboardList className="mr-2 w-5 h-5" />
+                Preencher QAR
+              </Button>
+            </motion.div>
+          </>
+        )}
 
         {onBack && (
           <motion.div variants={itemVariants}>
