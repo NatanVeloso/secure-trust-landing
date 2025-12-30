@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTheme } from "next-themes";
 
 // Import das logos dos parceiros
 import allianz from "@/assets/parceiros/Allianz.png";
@@ -24,12 +25,13 @@ import zurich from "@/assets/parceiros/zurich.png";
 
 const PartnersCarousel = () => {
   const [isPaused, setIsPaused] = useState(false);
+  const { theme } = useTheme();
 
   // Lista de logos dos parceiros
   const partners = [
     { name: "Allianz", logo: allianz },
     { name: "Allseg", logo: allseg },
-    { name: "Axxa", logo: axxa },
+    { name: "Axxa", logo: axxa, invertOnLight: true }, // Logo branca, precisa inverter no tema light
     { name: "Azos", logo: azos },
     { name: "Azul", logo: azul },
     { name: "BB", logo: bb },
@@ -89,7 +91,9 @@ const PartnersCarousel = () => {
                   <img
                     src={partner.logo}
                     alt={partner.name}
-                    className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                    className={`max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300 ${
+                      partner.invertOnLight && theme === 'light' ? 'invert' : ''
+                    }`}
                   />
                 </div>
               ))}
