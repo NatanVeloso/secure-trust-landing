@@ -31,12 +31,17 @@ const services = [
 ];
 
 const Services = () => {
-  const whatsappNumber = "5511999999999";
-  
+  const whatsappNumber = "5544988325210";
+
   const handleServiceClick = (service: string) => {
-    const message = encodeURIComponent(
-      `Olá, gostaria de saber mais sobre ${service}.`
-    );
+    const messages: Record<string, string> = {
+      "Seguro Auto": "Olá! Vim através do site e gostaria de receber mais informações sobre o *Seguro Auto*. Pode me ajudar com os planos e coberturas disponíveis?",
+      "Seguro de Vida": "Olá! Vim através do site e gostaria de receber mais informações sobre o *Seguro de Vida*. Pode me ajudar com os planos e coberturas disponíveis?",
+      "Seguro Residencial": "Olá! Vim através do site e gostaria de receber mais informações sobre o *Seguro Residencial*. Pode me ajudar com os planos e coberturas disponíveis?",
+      "Seguro Empresarial": "Olá! Vim através do site e gostaria de receber mais informações sobre o *Seguro Empresarial*. Pode me ajudar com os planos e coberturas disponíveis?",
+    };
+
+    const message = encodeURIComponent(messages[service] || `Olá, gostaria de saber mais sobre ${service}.`);
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
   };
 
