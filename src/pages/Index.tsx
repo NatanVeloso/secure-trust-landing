@@ -9,6 +9,7 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import Testimonials from "@/components/Testimonials";
 import AboutUs from "@/components/AboutUs";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import SEO from "@/components/SEO";
 
 const Index = () => {
 useEffect(() => {
@@ -47,6 +48,7 @@ useEffect(() => {
 
   return (
     <div className="min-h-screen">
+      <SEO />
       <Header />
       <main>
         <Hero />

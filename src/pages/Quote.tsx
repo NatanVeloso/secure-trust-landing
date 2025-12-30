@@ -10,6 +10,7 @@ import QarChoiceStep from "@/components/quote/QarChoiceStep";
 import ConsultantStep from "@/components/quote/ConsultantStep";
 import QarDetailsStep from "@/components/quote/QarDetailsStep";
 import ResidenceStep from "@/components/quote/ResidenceStep";
+import SEO from "@/components/SEO";
 
 const Quote = () => {
   const [currentStep, setCurrentStep] = useState<QuoteStep>("welcome");
@@ -114,8 +115,15 @@ const Quote = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 flex items-center justify-center p-4 overflow-hidden relative">
-      {/* Progress Bar */}
+    <>
+      <SEO
+        title="Cotação de Seguro Online - SegX Seguros | Rápido e Fácil"
+        description="Faça sua cotação de seguro auto online em minutos. Processo rápido, simples e 100% digital. Receba as melhores ofertas do mercado com atendimento personalizado."
+        keywords="cotação seguro auto online, cotação seguro veicular, simular seguro auto, orçamento seguro carro, cotação seguro online grátis"
+        url="/quote"
+      />
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 flex items-center justify-center p-4 overflow-hidden relative">
+        {/* Progress Bar */}
       <div className="fixed top-0 left-0 right-0 z-50 h-1.5 bg-muted/30 backdrop-blur-sm">
         <motion.div
           className="h-full bg-gradient-to-r from-green-500 to-green-600 shadow-lg shadow-green-500/50"
@@ -223,6 +231,7 @@ const Quote = () => {
         </motion.div>
       </AnimatePresence>
     </div>
+    </>
   );
 };
 
