@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { QuoteFormData } from "@/types/quote";
 import { Button } from "@/components/ui/button";
@@ -29,6 +29,20 @@ const ResidenceStep = ({ formData, onUpdate, onNext, onBack }: ResidenceStepProp
 
   const showStudyGarage = studyUsage && ["high_school", "college", "postgrad", "other"].includes(studyUsage);
   const showWorkGarage = workUsage === "yes";
+
+  // Limpa o campo studyGarage quando ele fica oculto
+  useEffect(() => {
+    if (!showStudyGarage && studyGarage) {
+      setStudyGarage(undefined);
+    }
+  }, [showStudyGarage, studyGarage]);
+
+  // Limpa o campo workGarage quando ele fica oculto
+  useEffect(() => {
+    if (!showWorkGarage && workGarage) {
+      setWorkGarage(undefined);
+    }
+  }, [showWorkGarage, workGarage]);
 
   const handleNext = () => {
     if (
