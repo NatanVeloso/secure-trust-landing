@@ -96,7 +96,7 @@ const AboutUs = () => {
                   agilidade e as melhores condições do mercado."
                 </p>
                 <p className="mt-4 font-semibold text-primary">
-                  - Alessandro Magalhães & Equipe SegX
+                  - Willian e Alessandro
                 </p>
               </div>
             </motion.div>
