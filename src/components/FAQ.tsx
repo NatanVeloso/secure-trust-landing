@@ -49,6 +49,7 @@ const FAQ = () => {
 
   return (
     <section id="faq" className="relative py-24 bg-muted/30 overflow-hidden">
+      
       {/* Elementos decorativos de background */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Círculo top-left */}

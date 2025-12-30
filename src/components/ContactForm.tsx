@@ -238,7 +238,7 @@ const ContactForm = () => {
                 ) : (
                   <>
                     <Send className="mr-2 w-5 h-5" />
-                    Solicitar Cotação
+                    Solicitar Contato
                   </>
                 )}
               </Button>
