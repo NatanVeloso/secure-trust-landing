@@ -74,7 +74,7 @@ const AboutUs = () => {
             </motion.div>
 
             {/* Content Section */}
-            <motion.div variants={itemVariants} className="space-y-6">
+            <motion.div variants={itemVariants} className="space-y-6 mt-8 lg:mt-0">
               <h3 className="text-3xl md:text-4xl font-bold">
                 Uma História de Compromisso e Confiança
               </h3>
