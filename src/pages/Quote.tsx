@@ -47,8 +47,11 @@ const Quote = () => {
         setCurrentStep("vehicle");
         break;
       case "consultant":
-        // Pode vir de qar_choice ou residence
-        if (formData.residenceType) {
+        // Se é fluxo curto (buying/researching), volta para personal
+        // Senão, pode vir de qar_choice ou residence
+        if (formData.vehicleOwnership === "buying" || formData.vehicleOwnership === "researching") {
+          setCurrentStep("personal");
+        } else if (formData.residenceType) {
           setCurrentStep("residence");
         } else {
           setCurrentStep("qar_choice");
@@ -68,6 +71,21 @@ const Quote = () => {
 
   // Calcula o progresso baseado no step atual
   const getProgress = () => {
+    // Fluxo curto para buying e researching
+    const isShortFlow = formData.vehicleOwnership === "buying" || formData.vehicleOwnership === "researching";
+
+    if (isShortFlow) {
+      const shortProgressMap: Record<QuoteStep, number> = {
+        welcome: 0,
+        ownership: 33,
+        personal: 66,
+        consultant: 100,
+        final: 100,
+      };
+      return shortProgressMap[currentStep] || 0;
+    }
+
+    // Fluxo completo para "have"
     const progressMap: Record<QuoteStep, number> = {
       welcome: 0,
       ownership: 12,
@@ -153,7 +171,14 @@ const Quote = () => {
             <PersonalStep
               formData={formData}
               onUpdate={updateFormData}
-              onNext={() => goToNextStep("vehicle")}
+              onNext={() => {
+                // Se é fluxo curto (buying/researching), vai direto para consultant
+                if (formData.vehicleOwnership === "buying" || formData.vehicleOwnership === "researching") {
+                  goToNextStep("consultant");
+                } else {
+                  goToNextStep("vehicle");
+                }
+              }}
               onBack={goToPreviousStep}
             />
           )}

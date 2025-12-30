@@ -16,6 +16,12 @@ const ConsultantStep = ({ formData, onQar, onBack }: ConsultantStepProps) => {
   // Verifica se o usuário já preencheu o QAR
   const hasCompletedQar = formData.vehicleUsage || formData.residenceType;
 
+  // Verifica se é fluxo curto (buying/researching) - não deve mostrar opção QAR
+  const isShortFlow = formData.vehicleOwnership === "buying" || formData.vehicleOwnership === "researching";
+
+  // Só mostra o botão QAR se NÃO for fluxo curto E NÃO tiver completado o QAR
+  const shouldShowQarButton = !isShortFlow && !hasCompletedQar;
+
   const formatWhatsAppMessage = () => {
     let message = "Olá! Gostaria de fazer uma cotação de seguro.\n\n";
     message += "📋 *Dados informados:*\n\n";
@@ -264,7 +270,7 @@ const ConsultantStep = ({ formData, onQar, onBack }: ConsultantStepProps) => {
           </Button>
         </motion.div>
 
-        {!hasCompletedQar && onQar && (
+        {shouldShowQarButton && onQar && (
           <>
             <motion.div variants={itemVariants} className="flex items-center gap-4 py-2">
               <div className="flex-1 h-px bg-border"></div>
