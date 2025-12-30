@@ -8,6 +8,7 @@ import ContactForm from "@/components/ContactForm";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Testimonials from "@/components/Testimonials";
 import AboutUs from "@/components/AboutUs";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 const Index = () => {
 useEffect(() => {
@@ -57,6 +58,7 @@ useEffect(() => {
         <ContactForm />
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 };
