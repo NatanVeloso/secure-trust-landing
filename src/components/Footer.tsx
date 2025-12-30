@@ -147,7 +147,7 @@ const Footer = () => {
             <div className="flex flex-wrap justify-center gap-4">
               <p>CNPJ: 63.117.957/0001-32</p>
               <p>•</p>
-              <p>SUSEP: 12345.678901/2023-45</p>
+              <p>SUSEP: 252174335</p>
             </div>
             <div className="flex flex-wrap justify-center gap-6">
               <a href="#" className="hover:text-background transition-colors">

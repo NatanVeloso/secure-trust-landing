@@ -8,6 +8,14 @@ const faqs = [
     answer: "O processo é simples e rápido! Entre em contato conosco pelo WhatsApp ou formulário, faça uma cotação personalizada sem compromisso, escolha o plano ideal para suas necessidades e finalize a contratação. Todo o processo pode ser feito online e você recebe sua apólice por e-mail."
   },
   {
+    question: "Como aciono o seguro em caso de sinistro?",
+    answer: "Em caso de sinistro, entre em contato imediatamente com nossa central de atendimento 24h. Informe os detalhes do ocorrido, siga as orientações do atendente e providencie a documentação necessária. Nossa equipe acompanhará todo o processo até a resolução."
+  },
+  {
+    question: "Quais são as formas de pagamento?",
+    answer: "Os pagamentos podem ser feitos por boleto ou PIX."
+  },
+  {
     question: "Posso cancelar meu seguro a qualquer momento?",
     answer: "Sim! Você tem total liberdade para cancelar seu seguro quando desejar. Basta entrar em contato conosco e solicitar o cancelamento. Dependendo do tipo de seguro e do momento do cancelamento, você pode ter direito a restituição proporcional do valor pago."
   },
@@ -49,7 +57,7 @@ const FAQ = () => {
 
   return (
     <section id="faq" className="relative py-24 bg-muted/30 overflow-hidden">
-      
+
       {/* Elementos decorativos de background */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Círculo top-left */}
