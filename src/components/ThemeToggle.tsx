@@ -12,6 +12,15 @@ const ThemeToggle = () => {
     setMounted(true);
   }, []);
 
+  const handleToggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+
+    // Salva que o usuário escolheu manualmente
+    localStorage.setItem("theme-manual-override", "true");
+    console.log("[Theme Toggle] Preferência manual salva - tema automático desativado");
+  };
+
   if (!mounted) {
     return (
       <Button variant="ghost" size="icon" className="w-9 h-9">
@@ -24,7 +33,7 @@ const ThemeToggle = () => {
     <Button
       variant="ghost"
       size="icon"
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={handleToggleTheme}
       className="w-9 h-9 transition-all hover:scale-110"
       aria-label="Alternar tema"
     >
