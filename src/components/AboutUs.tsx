@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { Award, Shield, Users, Target } from "lucide-react";
 import socios from '../assets/socios.jpg';
+import { Award, Shield, Users, Target } from "lucide-react";
 
 const AboutUs = () => {
   const stats = [

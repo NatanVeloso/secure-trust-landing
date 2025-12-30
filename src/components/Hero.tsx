@@ -1,9 +1,9 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import reclameAqui from "@/assets/reclame-aqui.png";
 import iconeSemFundo from "@/assets/iconesemfundo.png";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { ArrowRight, Shield, CheckCircle2, Star } from "lucide-react";
-import { Link } from "react-router-dom";
 
 const Hero = () => {
   const whatsappNumber = "5511999999999";

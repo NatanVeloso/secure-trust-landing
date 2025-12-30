@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Shield, ArrowRight, CheckCircle2, Home } from "lucide-react";
-import { Link } from "react-router-dom";
 
 interface WelcomeStepProps {
   onNext: () => void;

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { QuoteFormData } from "@/types/quote";
-import { Car, ShoppingCart, Search, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Car, ShoppingCart, Search, ArrowLeft } from "lucide-react";
 
 interface OwnershipStepProps {
   formData: QuoteFormData;

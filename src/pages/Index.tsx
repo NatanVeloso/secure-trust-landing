@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 import FAQ from "@/components/FAQ";
+import SEO from "@/components/SEO";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import AboutUs from "@/components/AboutUs";
 import Services from "@/components/Services";
 import ContactForm from "@/components/ContactForm";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Testimonials from "@/components/Testimonials";
-import AboutUs from "@/components/AboutUs";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
-import SEO from "@/components/SEO";
 
 const Index = () => {
 useEffect(() => {

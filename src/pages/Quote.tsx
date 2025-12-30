@@ -1,16 +1,16 @@
 import { useState } from "react";
+import SEO from "@/components/SEO";
 import { motion, AnimatePresence } from "framer-motion";
 import { QuoteFormData, QuoteStep } from "@/types/quote";
 import WelcomeStep from "@/components/quote/WelcomeStep";
+import VehicleStep from "@/components/quote/VehicleStep";
+import PersonalStep from "@/components/quote/PersonalStep";
 import OwnershipStep from "@/components/quote/OwnershipStep";
 import InsuranceStep from "@/components/quote/InsuranceStep";
-import PersonalStep from "@/components/quote/PersonalStep";
-import VehicleStep from "@/components/quote/VehicleStep";
 import QarChoiceStep from "@/components/quote/QarChoiceStep";
+import ResidenceStep from "@/components/quote/ResidenceStep";
 import ConsultantStep from "@/components/quote/ConsultantStep";
 import QarDetailsStep from "@/components/quote/QarDetailsStep";
-import ResidenceStep from "@/components/quote/ResidenceStep";
-import SEO from "@/components/SEO";
 
 const Quote = () => {
   const [currentStep, setCurrentStep] = useState<QuoteStep>("welcome");
@@ -79,7 +79,12 @@ const Quote = () => {
       const shortProgressMap: Record<QuoteStep, number> = {
         welcome: 0,
         ownership: 33,
+        insurance: 33,
         personal: 66,
+        vehicle: 66,
+        qar_choice: 66,
+        qar_details: 66,
+        residence: 66,
         consultant: 100,
         final: 100,
       };
@@ -109,7 +114,7 @@ const Quote = () => {
   };
 
   const pageTransition = {
-    type: "spring",
+    type: "spring" as const,
     stiffness: 100,
     damping: 20,
   };
