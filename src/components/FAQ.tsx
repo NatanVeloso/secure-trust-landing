@@ -74,9 +74,8 @@ const FAQ = () => {
       <div className="container relative z-10 mx-auto px-4">
         <div
           ref={header.ref}
-          className={`text-center max-w-3xl mx-auto mb-16 space-y-4 transition-all duration-700 ${
-            header.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className={`text-center max-w-3xl mx-auto mb-16 space-y-4 transition-all duration-700 ${header.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-4">
             <HelpCircle className="w-4 h-4 text-primary" />
@@ -90,9 +89,8 @@ const FAQ = () => {
 
         <div
           ref={faqList.ref}
-          className={`max-w-3xl mx-auto space-y-4 transition-all duration-700 ${
-            faqList.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className={`max-w-3xl mx-auto space-y-4 transition-all duration-700 ${faqList.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
         >
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
@@ -108,20 +106,16 @@ const FAQ = () => {
                     {faq.question}
                   </h3>
                   <ChevronDown
-                    className={`w-5 h-5 flex-shrink-0 text-primary transition-transform duration-300 ${
-                      isOpen ? 'rotate-180' : ''
-                    }`}
+                    className={`w-5 h-5 flex-shrink-0 text-primary transition-transform duration-300 ${isOpen ? 'rotate-180' : ''
+                      }`}
                   />
                 </div>
 
                 <div
-                  className={`grid transition-all duration-300 ease-in-out ${
-                    isOpen ? 'grid-rows-[1fr] mt-4' : 'grid-rows-[0fr]'
-                  }`}
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 mt-4' : 'max-h-0'
+                    }`}
                 >
-                  <div className="overflow-hidden">
-                    <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
-                  </div>
+                  <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
                 </div>
               </button>
             );
@@ -131,9 +125,8 @@ const FAQ = () => {
         {/* CTA adicional */}
         <div
           ref={cta.ref}
-          className={`text-center mt-12 transition-all duration-700 ${
-            cta.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className={`text-center mt-12 transition-all duration-700 ${cta.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
         >
           <p className="text-muted-foreground mb-4">Não encontrou a resposta que procurava?</p>
           <a
