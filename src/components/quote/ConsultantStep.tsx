@@ -82,7 +82,7 @@ const ConsultantStep = ({ formData, onQar, onBack }: ConsultantStepProps) => {
           {/* Photo Placeholder */}
           <div className="relative">
             <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-white text-4xl font-bold shadow-xl">
-              SF
+              AM
             </div>
             <div className="absolute -bottom-2 -right-2 bg-primary text-white rounded-full p-2">
               <Award className="w-5 h-5" />
@@ -91,7 +91,7 @@ const ConsultantStep = ({ formData, onQar, onBack }: ConsultantStepProps) => {
 
           {/* Consultant Info */}
           <div className="flex-1 text-center md:text-left">
-            <h3 className="text-2xl font-bold mb-1">Soosthynys de Freitas</h3>
+            <h3 className="text-2xl font-bold mb-1">Alessandro Magalhães</h3>
             <p className="text-primary font-semibold mb-3">Especialista em Seguros</p>
 
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-muted-foreground">
@@ -158,10 +158,6 @@ const ConsultantStep = ({ formData, onQar, onBack }: ConsultantStepProps) => {
           </motion.div>
         )}
       </div>
-
-      <motion.p variants={itemVariants} className="text-center text-xs text-muted-foreground mt-6">
-        💬 Resposta em menos de 2 minutos
-      </motion.p>
     </motion.div>
   );
 };

@@ -102,7 +102,7 @@ const Hero = () => {
               className={`text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed transition-all duration-700 delay-200 ${description.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
             >
-              Transparência e atendimento humanizado.
+              Transparência e atendimento humanizado.{" "}
               <br className="hidden md:block" />
               Proteja sua família, seu patrimônio e seus sonhos com quem entende do assunto.
             </p>
