@@ -122,7 +122,7 @@ const Quote = () => {
   return (
     <>
       <SEO
-        title="Cotação de Seguro Online - SegX Seguros | Rápido e Fácil"
+        title="SegX Seguros - Cotação de Seguro Online | Rápido e Fácil"
         description="Faça sua cotação de seguro auto online em minutos. Processo rápido, simples e 100% digital. Receba as melhores ofertas do mercado com atendimento personalizado."
         keywords="cotação seguro auto online, cotação seguro veicular, simular seguro auto, orçamento seguro carro, cotação seguro online grátis"
         url="/quote"

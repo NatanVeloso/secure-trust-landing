@@ -34,33 +34,43 @@ const ContactForm = () => {
       return;
     }
 
-    // Send to WhatsApp
-    const whatsappNumber = "5544988325210"; // Replace with actual number
-    const message = encodeURIComponent(
-      `*Nova Cotação via Site*\n\n` +
-      `Nome: ${formData.name}\n` +
-      `Email: ${formData.email}\n` +
-      `Telefone: ${formData.phone}\n` +
-      `Tipo de Seguro: ${formData.service}\n` +
-      `Mensagem: ${formData.message || "N/A"}`
-    );
+    try {
+      const response = await fetch('http://localhost:3000/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
+      const data = await response.json();
 
-    toast({
-      title: "Solicitação enviada!",
-      description: "Em breve entraremos em contato com você.",
-    });
+      if (data.success) {
+        toast({
+          title: "Solicitação enviada!",
+          description: "Em breve entraremos em contato com você.",
+        });
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      service: "",
-      message: "",
-    });
-    setIsSubmitting(false);
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          service: "",
+          message: "",
+        });
+      } else {
+        throw new Error(data.message);
+      }
+    } catch (error) {
+      toast({
+        title: "Erro ao enviar",
+        description: "Tente novamente mais tarde.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = useScrollAnimation(0.1);

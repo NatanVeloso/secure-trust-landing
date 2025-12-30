@@ -87,12 +87,11 @@ const FAQ = () => {
           </p>
         </div>
 
-      <div
-  ref={faqList.ref}
-  className={`max-w-3xl mx-auto flex flex-col gap-4 transition-all duration-700 ${
-    faqList.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-  }`}
->
+        <div
+          ref={faqList.ref}
+          className={`max-w-3xl mx-auto flex flex-col gap-4 transition-all duration-700 ${faqList.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+        >
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
 
@@ -113,10 +112,9 @@ const FAQ = () => {
                 </div>
 
                 <div
-  className={`overflow-hidden transition-all duration-300 ease-in-out ${
-    isOpen ? 'max-h-96 mt-4 opacity-100' : 'max-h-0 opacity-0'
-  }`}
->
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 mt-4 opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                >
                   <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
                 </div>
               </button>
