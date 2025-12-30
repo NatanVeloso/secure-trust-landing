@@ -7,6 +7,7 @@ import Services from "@/components/Services";
 import ContactForm from "@/components/ContactForm";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Testimonials from "@/components/Testimonials";
+import AboutUs from "@/components/AboutUs";
 
 const Index = () => {
 useEffect(() => {
@@ -49,6 +50,7 @@ useEffect(() => {
       <main>
         <Hero />
         <Services />
+        <AboutUs />
         <WhyChooseUs />
         <Testimonials />
         <FAQ />
