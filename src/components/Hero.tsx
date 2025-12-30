@@ -160,7 +160,7 @@ const Hero = () => {
           </div>
 
           {/* Trust indicators */}
-          <div
+          {/* <div
             ref={stats.ref}
             className={`grid grid-cols-3 gap-8 pt-12 border-t border-border/50 max-w-3xl mx-auto transition-all duration-700 delay-500 ${stats.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
@@ -183,7 +183,7 @@ const Hero = () => {
               </p>
               <p className="text-xs md:text-sm text-muted-foreground font-medium">Satisfação garantida</p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 

@@ -45,6 +45,7 @@ const FAQ = () => {
   };
 
   const header = useScrollAnimation(0.1);
+  const cta = useScrollAnimation(0.2);
 
   return (
     <section id="faq" className="relative py-24 bg-muted/30 overflow-hidden">
@@ -55,7 +56,7 @@ const FAQ = () => {
           <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 to-transparent blur-3xl"></div>
           <div className="absolute inset-12 rounded-full border border-primary/10"></div>
         </div>
-        
+
         {/* Círculo bottom-right */}
         <div className="absolute -bottom-24 -right-24 w-96 h-96">
           <div className="absolute inset-0 rounded-full bg-gradient-to-tl from-secondary/10 to-transparent blur-3xl"></div>
@@ -64,16 +65,15 @@ const FAQ = () => {
 
         {/* Forma geométrica flutuante */}
         <div className="absolute top-1/3 left-10 w-32 h-32 border border-primary/10 rotate-12 opacity-40"
-             style={{ borderRadius: '25%' }}>
+          style={{ borderRadius: '25%' }}>
         </div>
       </div>
 
       <div className="container relative z-10 mx-auto px-4">
         <div
           ref={header.ref}
-          className={`text-center max-w-3xl mx-auto mb-16 space-y-4 transition-all duration-700 ${
-            header.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className={`text-center max-w-3xl mx-auto mb-16 space-y-4 transition-all duration-700 ${header.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-4">
             <HelpCircle className="w-4 h-4 text-primary" />
@@ -91,14 +91,13 @@ const FAQ = () => {
           {faqs.map((faq, index) => {
             const faqAnim = useScrollAnimation(0.1);
             const isOpen = openIndex === index;
-            
+
             return (
               <div
                 key={index}
                 ref={faqAnim.ref}
-                className={`transition-all duration-700 ${
-                  faqAnim.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
-                }`}
+                className={`transition-all duration-700 ${faqAnim.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+                  }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <button
@@ -110,16 +109,14 @@ const FAQ = () => {
                       {faq.question}
                     </h3>
                     <ChevronDown
-                      className={`w-5 h-5 flex-shrink-0 text-primary transition-transform duration-300 ${
-                        isOpen ? 'rotate-180' : ''
-                      }`}
+                      className={`w-5 h-5 flex-shrink-0 text-primary transition-transform duration-300 ${isOpen ? 'rotate-180' : ''
+                        }`}
                     />
                   </div>
-                  
+
                   <div
-                    className={`grid transition-all duration-300 ease-in-out ${
-                      isOpen ? 'grid-rows-[1fr] mt-4' : 'grid-rows-[0fr]'
-                    }`}
+                    className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] mt-4' : 'grid-rows-[0fr]'
+                      }`}
                   >
                     <div className="overflow-hidden">
                       <p className="text-muted-foreground leading-relaxed">
@@ -134,7 +131,11 @@ const FAQ = () => {
         </div>
 
         {/* CTA adicional */}
-        <div className="text-center mt-12">
+        <div
+          ref={cta.ref}
+          className={`text-center mt-12 transition-all duration-700 ${cta.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+        >
           <p className="text-muted-foreground mb-4">
             Não encontrou a resposta que procurava?
           </p>

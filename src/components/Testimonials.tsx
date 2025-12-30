@@ -35,15 +35,15 @@ const testimonials = [
 const Testimonials = () => {
   const header = useScrollAnimation(0.1);
   const stats = useScrollAnimation(0.1);
+  const cta = useScrollAnimation(0.1);
 
   return (
     <section id="depoimentos" className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div
           ref={header.ref}
-          className={`text-center max-w-3xl mx-auto mb-16 space-y-4 transition-all duration-700 ${
-            header.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className={`text-center max-w-3xl mx-auto mb-16 space-y-4 transition-all duration-700 ${header.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-4">
             <Star className="w-4 h-4 text-primary" />
@@ -64,16 +64,15 @@ const Testimonials = () => {
               <Card
                 key={index}
                 ref={cardAnim.ref}
-                className={`relative hover:shadow-lg transition-all duration-700 hover:-translate-y-1 ${
-                  cardAnim.isVisible 
-                    ? 'opacity-100 translate-y-0 rotate-0' 
-                    : 'opacity-0 translate-y-12 -rotate-3'
-                }`}
+                className={`relative hover:shadow-lg transition-all duration-700 hover:-translate-y-1 ${cardAnim.isVisible
+                  ? 'opacity-100 translate-y-0 rotate-0'
+                  : 'opacity-0 translate-y-12 -rotate-3'
+                  }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
               >
                 <CardContent className="pt-6">
                   <Quote className="w-10 h-10 text-primary/20 mb-4" />
-                  
+
                   <div className="flex gap-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star
@@ -107,7 +106,7 @@ const Testimonials = () => {
         </div>
 
         {/* Social proof stats */}
-        <div
+        {/* <div
           ref={stats.ref}
           className={`mt-16 pt-16 border-t grid md:grid-cols-4 gap-8 text-center transition-all duration-700 ${
             stats.isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
@@ -118,7 +117,7 @@ const Testimonials = () => {
             <p className="text-sm text-muted-foreground">Avaliação média</p>
           </div>
           <div>
-            <p className="text-4xl font-bold text-primary mb-2">50mil+</p>
+            <p className="text-4xl font-bold text-primary mb-2">5mil+</p>
             <p className="text-sm text-muted-foreground">Clientes atendidos</p>
           </div>
           <div>
@@ -129,16 +128,23 @@ const Testimonials = () => {
             <p className="text-4xl font-bold text-primary mb-2">10+</p>
             <p className="text-sm text-muted-foreground">Anos de experiência</p>
           </div>
-        </div>
-          {/* CTA adicional */}
-        <div className="text-center mt-12">
-          <a href="#contato"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium" >
-            Cote gratuitamente
-          </a>
-        </div>
+        </div> */}
+        {/* CTA adicional */}
+         <div 
+    ref={cta.ref}
+    className={`text-center mt-12 transition-all duration-700 ${
+      cta.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+    }`}
+  >
+    <a 
+      href="#contato"
+      className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
+    >
+      Cote gratuitamente
+    </a>
+  </div>
       </div>
-    
+
     </section>
   );
 };
