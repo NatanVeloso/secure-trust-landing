@@ -35,7 +35,7 @@ const ContactForm = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/contact', {
+      const response = await fetch('https://api.segxseguros.com.br/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
