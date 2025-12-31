@@ -1,17 +1,18 @@
 import { motion } from "framer-motion";
-import { QuoteFormData } from "@/types/quote";
+import { QuoteFormData, Consultant } from "@/types/quote";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, ClipboardList, Star, Award, ArrowLeft } from "lucide-react";
 
 interface ConsultantStepProps {
   formData: QuoteFormData;
+  consultant: Consultant;
   onQar?: () => void;
   onBack?: () => void;
 }
 
-const ConsultantStep = ({ formData, onQar, onBack }: ConsultantStepProps) => {
+const ConsultantStep = ({ formData, consultant, onQar, onBack }: ConsultantStepProps) => {
 
-  const whatsappNumber = "5544988325210";
+  const whatsappNumber = consultant.whatsapp;
 
   // Verifica se o usuário já preencheu o QAR
   const hasCompletedQar = formData.vehicleUsage || formData.residenceType;
@@ -222,11 +223,13 @@ const ConsultantStep = ({ formData, onQar, onBack }: ConsultantStepProps) => {
         className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl p-6 mb-6 border-2 border-primary/20"
       >
         <div className="flex flex-col md:flex-row items-center gap-6">
-          {/* Photo Placeholder */}
+          {/* Photo */}
           <div className="relative">
-            <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-white text-4xl font-bold shadow-xl">
-              AM
-            </div>
+            <img
+              src={consultant.photo}
+              alt={consultant.name}
+              className="w-32 h-32 rounded-full object-cover shadow-xl border-4 border-primary/20"
+            />
             <div className="absolute -bottom-2 -right-2 bg-primary text-white rounded-full p-2">
               <Award className="w-5 h-5" />
             </div>
@@ -234,7 +237,7 @@ const ConsultantStep = ({ formData, onQar, onBack }: ConsultantStepProps) => {
 
           {/* Consultant Info */}
           <div className="flex-1 text-center md:text-left">
-            <h3 className="text-2xl font-bold mb-1">Alessandro Magalhães</h3>
+            <h3 className="text-2xl font-bold mb-1">{consultant.name}</h3>
             <p className="text-primary font-semibold mb-3">Especialista em Seguros</p>
 
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-muted-foreground">
@@ -252,7 +255,7 @@ const ConsultantStep = ({ formData, onQar, onBack }: ConsultantStepProps) => {
 
         <div className="mt-6 p-4 bg-background/50 rounded-lg">
           <p className="text-sm text-muted-foreground text-center md:text-left">
-            "Vou te ajudar a encontrar a melhor proteção para seu veículo com as condições mais vantajosas do mercado."
+            "{consultant.description}"
           </p>
         </div>
       </motion.div>

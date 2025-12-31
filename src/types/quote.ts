@@ -1,3 +1,12 @@
+export interface Consultant {
+  id: number;
+  name: string;
+  initials: string;
+  photo: string;
+  description: string;
+  whatsapp: string;
+}
+
 export interface QuoteFormData {
   // Step 1: Posse do veículo
   vehicleOwnership?: "have" | "buying" | "researching";

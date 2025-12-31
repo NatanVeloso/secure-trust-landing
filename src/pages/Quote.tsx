@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SEO from "@/components/SEO";
 import { motion, AnimatePresence } from "framer-motion";
-import { QuoteFormData, QuoteStep } from "@/types/quote";
+import { QuoteFormData, QuoteStep, Consultant } from "@/types/quote";
 import WelcomeStep from "@/components/quote/WelcomeStep";
 import VehicleStep from "@/components/quote/VehicleStep";
 import PersonalStep from "@/components/quote/PersonalStep";
@@ -11,14 +11,45 @@ import QarChoiceStep from "@/components/quote/QarChoiceStep";
 import ResidenceStep from "@/components/quote/ResidenceStep";
 import ConsultantStep from "@/components/quote/ConsultantStep";
 import QarDetailsStep from "@/components/quote/QarDetailsStep";
+import corretor1 from "@/assets/corretor1.png";
+import corretor2 from "@/assets/corretor2.png";
+
+// Dados dos consultores
+const consultants: Consultant[] = [
+  {
+    id: 1,
+    name: "Alessandro Magalhães",
+    initials: "AM",
+    photo: corretor1,
+    description: "Vou te ajudar a encontrar a melhor proteção para seu veículo com as condições mais vantajosas do mercado.",
+    whatsapp: "5544988325210"
+  },
+  {
+    id: 2,
+    name: "Willian Baldo",
+    initials: "WB",
+    photo: corretor2,
+    description: "Estou aqui para garantir que você tenha a melhor experiência na contratação do seu seguro.",
+    whatsapp: "5544988325210"
+  }
+];
 
 const Quote = () => {
   const [currentStep, setCurrentStep] = useState<QuoteStep>("welcome");
   const [formData, setFormData] = useState<QuoteFormData>({});
+  const [selectedConsultant, setSelectedConsultant] = useState<Consultant | null>(null);
 
   const updateFormData = (data: Partial<QuoteFormData>) => {
     setFormData((prev) => ({ ...prev, ...data }));
   };
+
+  // Sorteia um consultor quando o usuário chega no step "consultant" pela primeira vez
+  useEffect(() => {
+    if (currentStep === "consultant" && !selectedConsultant) {
+      const randomIndex = Math.floor(Math.random() * consultants.length);
+      setSelectedConsultant(consultants[randomIndex]);
+    }
+  }, [currentStep, selectedConsultant]);
 
   const goToNextStep = (nextStep: QuoteStep) => {
     setCurrentStep(nextStep);
@@ -210,9 +241,10 @@ const Quote = () => {
               onBack={goToPreviousStep}
             />
           )}
-          {currentStep === "consultant" && (
+          {currentStep === "consultant" && selectedConsultant && (
             <ConsultantStep
               formData={formData}
+              consultant={selectedConsultant}
               onQar={() => goToNextStep("qar_details")}
               onBack={goToPreviousStep}
             />
