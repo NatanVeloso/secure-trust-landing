@@ -62,10 +62,12 @@ const WhyChooseUs = () => {
 
       <div className="container mx-auto px-4">
         {/* Layout principal: Imagem + Conteúdo */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+        <div
+          ref={header.ref}
+          className="grid lg:grid-cols-2 gap-12 items-center mb-16"
+        >
           {/* Imagem à esquerda */}
           <div
-            ref={header.ref}
             className={`relative hidden lg:block transition-all duration-700 ${header.isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
               }`}
           >

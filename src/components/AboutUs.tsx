@@ -1,15 +1,17 @@
+import socios from "../assets/socios.jpg";
 import { useEffect, useRef, useState } from "react";
 import { Shield, Users, Award, Clock } from "lucide-react";
 import { animate, motion, useInView } from "framer-motion";
-import socios from "../assets/socios.jpg";
 
 const AnimatedNumber = ({ value, suffix = "", duration = 2 }: { value: number; suffix?: string; duration?: number }) => {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const hasAnimated = useRef(false);
   const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
-    if (isInView) {
+    if (isInView && !hasAnimated.current) {
+      hasAnimated.current = true;
       const controls = animate(0, value, {
         duration: duration,
         ease: "easeOut",
@@ -21,6 +23,17 @@ const AnimatedNumber = ({ value, suffix = "", duration = 2 }: { value: number; s
       return () => controls.stop();
     }
   }, [isInView, value, duration]);
+
+  // Fallback: se após 3 segundos ainda estiver em 0, força o valor final
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (displayValue === 0) {
+        setDisplayValue(value);
+      }
+    }, 3000);
+
+    return () => clearTimeout(timeout);
+  }, [value, displayValue]);
 
   return <span ref={ref}>{displayValue}{suffix}</span>;
 };
@@ -116,7 +129,7 @@ const AboutUs = () => {
             >
               <motion.div variants={itemVariants}>
                 <span className="text-3xl font-bold text-primary">
-                  <AnimatedNumber value={15} suffix="+" />
+                  <AnimatedNumber value={10} suffix="+" />
                 </span>
                 <p className="text-sm text-muted-foreground">Anos de mercado</p>
               </motion.div>

@@ -63,7 +63,7 @@ const FloatingWhatsApp = () => {
       {/* Floating Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        onMouseEnter={() => setIsOpen(true)}
+        // onMouseEnter={() => setIsOpen(true)}
         className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[9999] group"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}

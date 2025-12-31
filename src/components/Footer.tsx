@@ -27,8 +27,8 @@ const Footer = () => {
       label: "(Matriz)",
       address: "Av. Presidente Castelo Branco, 3806 - Sala 1302A",
       cep: "CEP 87501-170",
-      phone: "(44) 98832-5210",
-      phoneLink: "tel:+5544988325210",
+      phone: "(41) 99245-5013",
+      phoneLink: "tel:+5541002455013",
       mapsUrl: "https://maps.google.com/maps?q=Av+Presidente+Castelo+Branco+3806+Umuarama+PR",
     },
     {

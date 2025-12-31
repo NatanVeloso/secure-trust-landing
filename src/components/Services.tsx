@@ -10,24 +10,64 @@ const services = [
     title: "Seguro Auto",
     description: "Proteção completa para seu veículo com coberturas personalizadas e assistência 24h.",
     features: ["Assistência 24h", "Carro reserva", "Cobertura nacional"],
+    color: {
+      gradient: "from-blue-500/10 via-transparent to-transparent",
+      border: "border-blue-200/50 dark:border-blue-800/30 hover:border-blue-400/50",
+      glow: "hover:shadow-blue-500/20",
+      icon: "bg-blue-100 dark:bg-blue-900/50",
+      iconHover: "group-hover:bg-blue-500 group-hover:shadow-lg group-hover:shadow-blue-500/30",
+      iconText: "text-blue-600 dark:text-blue-400 group-hover:text-white",
+      accent: "bg-blue-500",
+      button: "hover:bg-blue-500 hover:text-white hover:border-blue-500",
+    },
   },
   {
     icon: Heart,
     title: "Seguro de Vida",
     description: "Garanta o futuro da sua família com planos flexíveis e coberturas amplas.",
     features: ["Morte e invalidez", "Doenças graves", "Renda mensal"],
+    color: {
+      gradient: "from-rose-500/10 via-transparent to-transparent",
+      border: "border-rose-200/50 dark:border-rose-800/30 hover:border-rose-400/50",
+      glow: "hover:shadow-rose-500/20",
+      icon: "bg-rose-100 dark:bg-rose-900/50",
+      iconHover: "group-hover:bg-rose-500 group-hover:shadow-lg group-hover:shadow-rose-500/30",
+      iconText: "text-rose-600 dark:text-rose-400 group-hover:text-white",
+      accent: "bg-rose-500",
+      button: "hover:bg-rose-500 hover:text-white hover:border-rose-500",
+    },
   },
   {
     icon: Home,
     title: "Seguro Residencial",
     description: "Tranquilidade para sua casa e família contra imprevistos e sinistros.",
     features: ["Incêndio e roubo", "Danos elétricos", "Vendaval"],
+    color: {
+      gradient: "from-amber-500/10 via-transparent to-transparent",
+      border: "border-amber-200/50 dark:border-amber-800/30 hover:border-amber-400/50",
+      glow: "hover:shadow-amber-500/20",
+      icon: "bg-amber-100 dark:bg-amber-900/50",
+      iconHover: "group-hover:bg-amber-500 group-hover:shadow-lg group-hover:shadow-amber-500/30",
+      iconText: "text-amber-600 dark:text-amber-400 group-hover:text-white",
+      accent: "bg-amber-500",
+      button: "hover:bg-amber-500 hover:text-white hover:border-amber-500",
+    },
   },
   {
     icon: Briefcase,
     title: "Seguro Empresarial",
     description: "Soluções corporativas para proteger seu negócio e colaboradores.",
     features: ["Incêndio", "Roubo", "Vendaval"],
+    color: {
+      gradient: "from-emerald-500/10 via-transparent to-transparent",
+      border: "border-emerald-200/50 dark:border-emerald-800/30 hover:border-emerald-400/50",
+      glow: "hover:shadow-emerald-500/20",
+      icon: "bg-emerald-100 dark:bg-emerald-900/50",
+      iconHover: "group-hover:bg-emerald-500 group-hover:shadow-lg group-hover:shadow-emerald-500/30",
+      iconText: "text-emerald-600 dark:text-emerald-400 group-hover:text-white",
+      accent: "bg-emerald-500",
+      button: "hover:bg-emerald-500 hover:text-white hover:border-emerald-500",
+    },
   },
 ];
 
@@ -94,31 +134,49 @@ const Services = () => {
     return (
       <Card
         ref={cardAnim.ref}
-        className={`group hover:shadow-lg transition-all duration-700 hover:-translate-y-1 gradient-card border-2 h-full ${cardAnim.isVisible
-          ? "opacity-100 translate-x-0"
-          : `opacity-0 ${isEven ? "-translate-x-12" : "translate-x-12"}`
+        className={`group relative overflow-hidden 
+        bg-card border-2 ${service.color.border} 
+        shadow-sm hover:shadow-2xl ${service.color.glow}
+        hover:-translate-y-2 transition-[transform,shadow,border-color] duration-300
+        h-full ${cardAnim.isVisible
+            ? "opacity-100 translate-x-0"
+            : `opacity-0 ${isEven ? "-translate-x-12" : "translate-x-12"}`
           }`}
-        style={{ transitionDelay: `${index * 150}ms` }}
+        style={{
+          // Delay só para opacity e translate da animação de entrada
+          transitionProperty: 'transform, box-shadow, border-color, opacity',
+          transitionDuration: '300ms, 300ms, 300ms, 700ms',
+          transitionDelay: cardAnim.isVisible ? '0ms' : `${index * 150}ms`,
+        }}
       >
-        <CardHeader>
-          <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-110 transition-all">
-            <Icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors" />
+        {/* Gradiente sutil no topo */}
+        <div className={`absolute inset-0 bg-gradient-to-br ${service.color.gradient} pointer-events-none`} />
+
+        {/* Linha decorativa no topo */}
+        <div className={`absolute top-0 left-0 right-0 h-1 ${service.color.accent} opacity-80`} />
+
+        <CardHeader className="relative">
+          <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 
+          transition-all duration-300 ${service.color.icon} ${service.color.iconHover}`}
+          >
+            <Icon className={`w-7 h-7 transition-colors duration-300 ${service.color.iconText}`} />
           </div>
           <CardTitle className="text-xl">{service.title}</CardTitle>
           <CardDescription className="text-base">{service.description}</CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+
+        <CardContent className="relative space-y-4">
           <ul className="space-y-2">
             {service.features.map((feature, i) => (
               <li key={i} className="flex items-start gap-2 text-sm">
-                <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
+                <div className={`w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0 ${service.color.accent}`} />
                 <span className="text-muted-foreground">{feature}</span>
               </li>
             ))}
           </ul>
           <Button
             variant="outline"
-            className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+            className={`w-full border-2 transition-all duration-300 ${service.color.button}`}
             onClick={() => handleServiceClick(service.title)}
           >
             Saiba mais
