@@ -26,11 +26,11 @@ const consultants: Consultant[] = [
   },
   {
     id: 2,
-    name: "Willian Baldo",
+    name: "Willian Valdo",
     initials: "WB",
     photo: corretor2,
     description: "Estou aqui para garantir que você tenha a melhor experiência na contratação do seu seguro.",
-    whatsapp: "5544988325210"
+    whatsapp: "5544999927174"
   }
 ];
 

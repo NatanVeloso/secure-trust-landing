@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { motion } from "framer-motion";
+import { useRef, useState } from "react";
 import bb from "../assets/parceiros/bp.png";
 import axxa from "../assets/parceiros/axxa.png";
 import azos from "../assets/parceiros/azos.png";
@@ -19,6 +20,22 @@ import ezzeSeguros from "../assets/parceiros/ezze.png";
 import bradesco from "../assets/parceiros/bradesco.png";
 import tokioMarine from "../assets/parceiros/tokio-marine.png";
 import hdiSeguros from "../assets/parceiros/hdi-seguros-logo.png";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
 
 const PartnersCarousel = () => {
   const partners = [
@@ -44,43 +61,108 @@ const PartnersCarousel = () => {
     { name: "Zurich", logo: zurich },
   ];
 
-  // Duplicar o array para criar o efeito infinito
   const duplicatedPartners = [...partners, ...partners];
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!scrollRef.current) return;
+    setIsPaused(true);
+    setStartX(e.pageX - scrollRef.current.offsetLeft);
+    setScrollLeft(scrollRef.current.scrollLeft);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isPaused || !scrollRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    scrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleMouseUp = () => {
+    setIsPaused(false);
+  };
+
+  const handleMouseLeave = () => {
+    setIsPaused(false);
+  };
+
+  // Touch events para mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (!scrollRef.current) return;
+    setIsPaused(true);
+    setStartX(e.touches[0].pageX - scrollRef.current.offsetLeft);
+    setScrollLeft(scrollRef.current.scrollLeft);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isPaused || !scrollRef.current) return;
+    const x = e.touches[0].pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    scrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleTouchEnd = () => {
+    setIsPaused(false);
+  };
 
   return (
     <section className="py-16 bg-gradient-to-b from-background to-muted/30 overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Nossos Parceiros
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Trabalhamos com as maiores e mais confiáveis seguradoras do mercado
-          </p>
-        </div>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+        >
+          <motion.div variants={itemVariants} className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Nossos Parceiros
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Trabalhamos com as maiores e mais confiáveis seguradoras do mercado
+            </p>
+          </motion.div>
 
-        <div className="relative">
-          {/* Gradientes nas bordas para efeito de fade */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+          <motion.div variants={itemVariants} className="relative">
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
-          {/* Container do carrossel */}
-          <div className="flex overflow-hidden">
-            <div className="flex gap-8 animate-scroll">
-              {duplicatedPartners.map((partner, index) => (
-                <div
-                  key={`${partner.name}-${index}`}
-                  className="flex-shrink-0 w-40 h-24 flex items-center justify-center bg-card rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow border border-border"
-                >
-                  <img
-                    src={partner.logo}
-                    alt={partner.name}
-                    className="max-w-full max-h-full object-contain" />
-                </div>
-              ))}
+            <div
+              ref={scrollRef}
+              className={`flex overflow-hidden ${isPaused ? "cursor-grabbing" : "cursor-grab"}`}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseLeave}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              <div
+                className={`flex gap-8 ${isPaused ? "paused" : "animate-scroll"}`}
+              >
+                {duplicatedPartners.map((partner, index) => (
+                  <div
+                    key={`${partner.name}-${index}`}
+                    className="flex-shrink-0 w-40 h-24 flex items-center justify-center bg-card rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow border border-border select-none"
+                  >
+                    <img
+                      src={partner.logo}
+                      alt={partner.name}
+                      className="max-w-full max-h-full object-contain pointer-events-none"
+                      draggable={false}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       <style>{`
@@ -95,6 +177,11 @@ const PartnersCarousel = () => {
 
         .animate-scroll {
           animation: scroll 90s linear infinite;
+        }
+
+        .paused {
+          animation: scroll 90s linear infinite;
+          animation-play-state: paused;
         }
       `}</style>
     </section>

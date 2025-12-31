@@ -4,7 +4,7 @@ import { Award, Clock, FileCheck, HeadphonesIcon, Shield, TrendingUp } from "luc
 const benefits = [
   {
     icon: Award,
-    title: "15 Anos de Experiência",
+    title: "10+ Anos de Experiência",
     description: "Mais de uma década protegendo famílias e empresas brasileiras.",
   },
   {
@@ -41,7 +41,7 @@ const WhyChooseUs = () => {
   return (
     <section id="sobre" className="relative py-24 bg-muted/30">
       {/* Wave de transição */}
-      <div className="absolute top-10 left-0 right-0 pointer-events-none -translate-y-full">
+      <div className="absolute top-10 left-0 right-0 pointer-events-none -translate-y-full mt-10">
         <svg
           viewBox="0 0 1440 120"
           xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,7 @@ const WhyChooseUs = () => {
           />
           <path
             d="M0 40L60 46.7C120 53 240 67 360 70C480 73 600 67 720 63.3C840 60 960 60 1080 63.3C1200 67 1320 73 1380 76.7L1440 80V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V40Z"
-            className="fill-muted/30"
+            className="fill-muted/40"
           />
         </svg>
       </div>
@@ -65,12 +65,12 @@ const WhyChooseUs = () => {
           className={`text-center max-w-3xl mx-auto mb-16 space-y-4 transition-all duration-700 ${header.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/10 rounded-full mb-4">
-            <Shield className="w-4 h-4 text-secondary" />
-            <span className="text-sm font-medium text-secondary">Por Que Escolher</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full">
+            <Shield className="w-4 h-4 text-primary" />
+            <span className="text-sm font-medium text-primary">Por Que Escolher</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold">
-            Por que escolher a<br /><span className="text-primary">SegX Seguros</span>?
+            Por que escolher a<br /><span className="text-gradient">SegX Seguros</span>?
           </h2>
           <p className="text-xl text-muted-foreground">
             Somos referência em seguros pela combinação de experiência, compromisso e atendimento excepcional

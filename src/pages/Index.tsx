@@ -54,8 +54,8 @@ useEffect(() => {
       <main>
         <Hero />
         <Services />
-        <PartnersCarousel />
         <AboutUs />
+        <PartnersCarousel />
         <WhyChooseUs />
         <Testimonials />
         <FAQ />

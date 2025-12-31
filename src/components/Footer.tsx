@@ -2,7 +2,7 @@ import logo from "@/assets/logo.png";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, ExternalLink } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Footer = () => {
@@ -21,17 +21,43 @@ const Footer = () => {
     setMounted(true);
   }, []);
 
+  const addresses = [
+    {
+      city: "Umuarama - PR",
+      label: "(Matriz)",
+      address: "Av. Presidente Castelo Branco, 3806 - Sala 1302A",
+      cep: "CEP 87501-170",
+      phone: "(44) 98832-5210",
+      phoneLink: "tel:+5544988325210",
+      mapsUrl: "https://maps.google.com/maps?q=Av+Presidente+Castelo+Branco+3806+Umuarama+PR",
+    },
+    {
+      city: "Curitiba - PR",
+      label: "",
+      address: "Edifício AR 3000 - Praça São Paulo da Cruz, 50 - Sala 1904, Juvevê",
+      cep: "CEP 80030-480",
+      phone: "(11) 92189-2608",
+      phoneLink: "tel:+5511921892608",
+      mapsUrl: "https://maps.google.com/maps?q=Praça+São+Paulo+da+Cruz+50+Juvevê+Curitiba+PR",
+    },
+  ];
+
   return (
-    <footer className="bg-foreground text-background">
+    <footer className="footer-bg text-background">
       <div className="container mx-auto px-4 py-16">
         <div
           ref={content.ref}
-          className={`grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12 transition-all duration-700 ${content.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-            }`}
+          className={`grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12 transition-all duration-700 ${
+            content.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          }`}
         >
           {/* Company Info */}
           <div className="space-y-4">
-            <img src={logo} alt="SegX Seguros" className={`h-12 w-auto ${mounted && theme === "light" ? "brightness-0 invert" : ""}`} />
+            <img
+              src={logo}
+              alt="SegX Seguros"
+              className={`h-12 w-auto ${mounted && theme === "light" ? "brightness-0 invert" : ""}`}
+            />
             <p className="text-background/70 text-sm leading-relaxed">
               Protegendo o que é importante para você há mais de 15 anos com
               transparência e compromisso.
@@ -66,7 +92,7 @@ const Footer = () => {
                   Depoimentos
                 </a>
               </li>
-               <li>
+              <li>
                 <a href="#faq" className="text-background/70 hover:text-background transition-colors">
                   Faq
                 </a>
@@ -109,35 +135,49 @@ const Footer = () => {
           {/* Contact */}
           <div>
             <h3 className="font-semibold text-lg mb-4">Contato</h3>
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-start gap-2">
-                <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span className="text-background/70">(44) 988325210</span>
-              </li>
+            <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-2">
                 <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span className="text-background/70">atendimento@segxseguros.com.br</span>
+                <a
+                  href="mailto:atendimento@segxseguros.com.br"
+                  className="text-background/70 hover:text-background transition-colors break-all"
+                >
+                  atendimento@segxseguros.com.br
+                </a>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span className="text-background/70">
-                  Avenida Paulista, 726, Sala 1202<br />
-                  Bela Vista, São Paulo-SP - CEP 01310-910
-                </span>
+                <div className="text-background/70 space-y-4">
+                  {addresses.map((item) => (
+                    <div key={item.city} className="space-y-1">
+                      <a
+                        href={item.mapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block group hover:text-background transition-colors"
+                      >
+                        <span className="font-medium text-background/90 group-hover:text-background flex items-center gap-1">
+                          {item.city} {item.label && <span className="text-xs font-normal">{item.label}</span>}
+                          <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </span>
+                        <span className="text-xs leading-relaxed block">
+                          {item.address}
+                          <br />
+                          {item.cep}
+                        </span>
+                      </a>
+                      <a
+                        href={item.phoneLink}
+                        className="text-xs flex items-center gap-1 hover:text-background transition-colors"
+                      >
+                        <Phone className="w-3 h-3" />
+                        {item.phone}
+                      </a>
+                    </div>
+                  ))}
+                </div>
               </li>
             </ul>
-            <div className="mt-4">
-              <iframe
-                src="https://maps.google.com/maps?q=Avenida+Paulista+726+Bela+Vista+São+Paulo+SP+01310-910&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                width="100%"
-                height="200"
-                style={{ border: 0, borderRadius: '0.5rem' }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Localização SegX Seguros"
-              />
-            </div>
           </div>
         </div>
 

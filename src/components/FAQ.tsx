@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, HelpCircle } from "lucide-react";
+import { ChevronDown, HelpCircle, MessageCircle } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const faqs = [
@@ -43,9 +43,8 @@ const faqs = [
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const header = useScrollAnimation(0.1);
+  const content = useScrollAnimation(0.1);
   const faqList = useScrollAnimation(0.1);
-  const cta = useScrollAnimation(0.2);
 
   const toggleQuestion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -72,69 +71,81 @@ const FAQ = () => {
       </div>
 
       <div className="container relative z-10 mx-auto px-4">
-        <div
-          ref={header.ref}
-          className={`text-center max-w-3xl mx-auto mb-16 space-y-4 transition-all duration-700 ${header.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-4">
-            <HelpCircle className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">Perguntas Frequentes</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold">Tire suas dúvidas</h2>
-          <p className="text-xl text-muted-foreground">
-            Respondemos as perguntas mais comuns sobre nossos serviços e seguros
-          </p>
-        </div>
-
-        <div
-          ref={faqList.ref}
-          className={`max-w-3xl mx-auto flex flex-col gap-4 transition-all duration-700 ${faqList.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-        >
-          {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
-
-            return (
-              <button
-                key={index}
-                onClick={() => toggleQuestion(index)}
-                className="w-full text-left bg-card border-2 rounded-lg p-6 hover:border-primary/50 transition-all group"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <h3 className="text-lg font-semibold pr-8 group-hover:text-primary transition-colors">
-                    {faq.question}
-                  </h3>
-                  <ChevronDown
-                    className={`w-5 h-5 flex-shrink-0 text-primary transition-transform duration-300 ${isOpen ? 'rotate-180' : ''
-                      }`}
-                  />
-                </div>
-
-                <div
-                  className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 mt-4 opacity-100' : 'max-h-0 opacity-0'
-                    }`}
-                >
-                  <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* CTA adicional */}
-        <div
-          ref={cta.ref}
-          className={`text-center mt-12 transition-all duration-700 ${cta.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-        >
-          <p className="text-muted-foreground mb-4">Não encontrou a resposta que procurava?</p>
-          <a
-            href="#contato"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
+        <div className="grid lg:grid-cols-5 gap-12">
+          {/* Lado esquerdo - Header + CTA (2 colunas) */}
+          <div
+            ref={content.ref}
+            className={`lg:col-span-2 transition-all duration-700 ${content.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
           >
-            Entre em contato conosco
-          </a>
+            <div className="text-center lg:text-left lg:sticky lg:top-24 space-y-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full">
+                <HelpCircle className="w-4 h-4 text-primary" />
+                <span className="text-sm font-medium text-primary">Perguntas Frequentes</span>
+              </div>
+
+              <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+                Tire suas <span className="text-gradient">dúvidas</span>
+              </h2>
+
+              <p className="text-lg text-muted-foreground">
+                Reunimos as perguntas mais frequentes dos nossos clientes. Se não encontrar o que procura, entre em contato conosco!
+              </p>
+
+              {/* CTA Card */}
+              <div className="bg-gradient-primary rounded-2xl p-8 text-primary-foreground mt-8">
+                <h3 className="font-bold text-lg mb-3">
+                  Não encontrou sua resposta?
+                </h3>
+                <p className="text-primary-foreground/90 mb-6">
+                  Nossa equipe está pronta para esclarecer todas as suas dúvidas de forma personalizada.
+                </p>
+                <a
+                  href="#contato"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-background text-foreground rounded-lg hover:bg-background/90 transition-colors font-medium"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  Fale com um especialista
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Lado direito - Perguntas (3 colunas) */}
+          <div
+            ref={faqList.ref}
+            className={`lg:col-span-3 flex flex-col gap-4 transition-all duration-700 ${faqList.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+          >
+            {faqs.map((faq, index) => {
+              const isOpen = openIndex === index;
+
+              return (
+                <button
+                  key={index}
+                  onClick={() => toggleQuestion(index)}
+                  className="w-full text-left bg-card border-2 rounded-xl px-4 py-3 hover:border-primary/50 transition-all group shadow-sm"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="text-md font-semibold pr-8 group-hover:text-primary transition-colors">
+                      {faq.question}
+                    </h3>
+                    <ChevronDown
+                      className={`w-5 h-5 flex-shrink-0 text-primary transition-transform duration-300 ${isOpen ? 'rotate-180' : ''
+                        }`}
+                    />
+                  </div>
+
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 mt-4 opacity-100' : 'max-h-0 opacity-0'
+                      }`}
+                  >
+                    <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
