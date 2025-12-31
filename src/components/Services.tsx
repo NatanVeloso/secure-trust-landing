@@ -71,6 +71,74 @@ const services = [
   },
 ];
 
+// Componente ServiceCard FORA do Services
+const ServiceCard = ({
+  service,
+  index,
+  onServiceClick,
+}: {
+  service: typeof services[0];
+  index: number;
+  onServiceClick: (title: string) => void;
+}) => {
+  const Icon = service.icon;
+  const cardAnim = useScrollAnimation(0.1);
+  const isEven = index % 2 === 0;
+
+  return (
+    <Card
+      ref={cardAnim.ref}
+      className={`group relative overflow-hidden 
+        bg-card border-2 ${service.color.border} 
+        shadow-sm hover:shadow-2xl ${service.color.glow}
+        hover:-translate-y-2 transition-all duration-300
+        h-full ${
+          cardAnim.isVisible
+            ? "opacity-100 translate-x-0"
+            : `opacity-0 ${isEven ? "-translate-x-12" : "translate-x-12"}`
+        }`}
+      style={{
+        transitionDelay: cardAnim.isVisible ? "0ms" : `${index * 150}ms`,
+      }}
+    >
+      {/* Gradiente sutil no topo */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${service.color.gradient} pointer-events-none`} />
+
+      {/* Linha decorativa no topo */}
+      <div className={`absolute top-0 left-0 right-0 h-1 ${service.color.accent} opacity-80`} />
+
+      <CardHeader className="relative">
+        <div
+          className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 
+          transition-all duration-300 ${service.color.icon} ${service.color.iconHover}`}
+        >
+          <Icon className={`w-7 h-7 transition-colors duration-300 ${service.color.iconText}`} />
+        </div>
+        <CardTitle className="text-xl">{service.title}</CardTitle>
+        <CardDescription className="text-base">{service.description}</CardDescription>
+      </CardHeader>
+
+      <CardContent className="relative space-y-4">
+        <ul className="space-y-2">
+          {service.features.map((feature, i) => (
+            <li key={i} className="flex items-start gap-2 text-sm">
+              <div className={`w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0 ${service.color.accent}`} />
+              <span className="text-muted-foreground">{feature}</span>
+            </li>
+          ))}
+        </ul>
+        <Button
+          variant="outline"
+          className={`w-full border-2 transition-all duration-300 ${service.color.button}`}
+          onClick={() => onServiceClick(service.title)}
+        >
+          Saiba mais
+        </Button>
+      </CardContent>
+    </Card>
+  );
+};
+
 const Services = () => {
   const whatsappNumber = "5544988325210";
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -80,10 +148,14 @@ const Services = () => {
 
   const handleServiceClick = (service: string) => {
     const messages: Record<string, string> = {
-      "Seguro Auto": "Olá! Vim através do site e gostaria de receber mais informações sobre o *Seguro Auto*. Pode me ajudar com os planos e coberturas disponíveis?",
-      "Seguro de Vida": "Olá! Vim através do site e gostaria de receber mais informações sobre o *Seguro de Vida*. Pode me ajudar com os planos e coberturas disponíveis?",
-      "Seguro Residencial": "Olá! Vim através do site e gostaria de receber mais informações sobre o *Seguro Residencial*. Pode me ajudar com os planos e coberturas disponíveis?",
-      "Seguro Empresarial": "Olá! Vim através do site e gostaria de receber mais informações sobre o *Seguro Empresarial*. Pode me ajudar com os planos e coberturas disponíveis?",
+      "Seguro Auto":
+        "Olá! Vim através do site e gostaria de receber mais informações sobre o *Seguro Auto*. Pode me ajudar com os planos e coberturas disponíveis?",
+      "Seguro de Vida":
+        "Olá! Vim através do site e gostaria de receber mais informações sobre o *Seguro de Vida*. Pode me ajudar com os planos e coberturas disponíveis?",
+      "Seguro Residencial":
+        "Olá! Vim através do site e gostaria de receber mais informações sobre o *Seguro Residencial*. Pode me ajudar com os planos e coberturas disponíveis?",
+      "Seguro Empresarial":
+        "Olá! Vim através do site e gostaria de receber mais informações sobre o *Seguro Empresarial*. Pode me ajudar com os planos e coberturas disponíveis?",
     };
 
     const message = encodeURIComponent(messages[service] || `Olá, gostaria de saber mais sobre ${service}.`);
@@ -113,7 +185,7 @@ const Services = () => {
 
   const handleTouchEnd = () => {
     const diff = touchStart - touchEnd;
-    const minSwipe = 50; // mínimo de pixels para considerar swipe
+    const minSwipe = 50;
 
     if (diff > minSwipe) {
       nextSlide();
@@ -124,67 +196,6 @@ const Services = () => {
 
   const header = useScrollAnimation(0.1);
   const info = useScrollAnimation(0.1);
-
-
-  const ServiceCard = ({ service, index }: { service: typeof services[0]; index: number }) => {
-    const Icon = service.icon;
-    const cardAnim = useScrollAnimation(0.1);
-    const isEven = index % 2 === 0;
-
-    return (
-      <Card
-        ref={cardAnim.ref}
-        className={`group relative overflow-hidden 
-        bg-card border-2 ${service.color.border} 
-        shadow-sm hover:shadow-2xl ${service.color.glow}
-        hover:-translate-y-2 transition-[transform,shadow,border-color] duration-300
-        h-full ${cardAnim.isVisible
-            ? "opacity-100 translate-x-0"
-            : `opacity-0 ${isEven ? "-translate-x-12" : "translate-x-12"}`
-          }`}
-        style={{
-          // Delay só para opacity e translate da animação de entrada
-          transitionProperty: 'transform, box-shadow, border-color, opacity',
-          transitionDuration: '300ms, 300ms, 300ms, 700ms',
-          transitionDelay: cardAnim.isVisible ? '0ms' : `${index * 150}ms`,
-        }}
-      >
-        {/* Gradiente sutil no topo */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${service.color.gradient} pointer-events-none`} />
-
-        {/* Linha decorativa no topo */}
-        <div className={`absolute top-0 left-0 right-0 h-1 ${service.color.accent} opacity-80`} />
-
-        <CardHeader className="relative">
-          <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 
-          transition-all duration-300 ${service.color.icon} ${service.color.iconHover}`}
-          >
-            <Icon className={`w-7 h-7 transition-colors duration-300 ${service.color.iconText}`} />
-          </div>
-          <CardTitle className="text-xl">{service.title}</CardTitle>
-          <CardDescription className="text-base">{service.description}</CardDescription>
-        </CardHeader>
-
-        <CardContent className="relative space-y-4">
-          <ul className="space-y-2">
-            {service.features.map((feature, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm">
-                <div className={`w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0 ${service.color.accent}`} />
-                <span className="text-muted-foreground">{feature}</span>
-              </li>
-            ))}
-          </ul>
-          <Button
-            variant="outline"
-            className={`w-full border-2 transition-all duration-300 ${service.color.button}`}
-            onClick={() => handleServiceClick(service.title)}
-          >
-            Saiba mais
-          </Button>
-        </CardContent>
-      </Card>
-    );
-  };
 
   return (
     <section id="servicos" className="relative py-24 bg-background overflow-hidden">
@@ -224,8 +235,9 @@ const Services = () => {
       <div className="container relative z-10 mx-auto px-4">
         <div
           ref={header.ref}
-          className={`text-center max-w-3xl mx-auto mb-16 space-y-4 transition-all duration-700 ${header.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
+          className={`text-center max-w-3xl mx-auto mb-16 space-y-4 transition-all duration-700 ${
+            header.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-4">
             <Shield className="w-4 h-4 text-primary" />
@@ -242,15 +254,24 @@ const Services = () => {
         {/* Desktop: Grid */}
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
-            <ServiceCard key={index} service={service} index={index} />
+            <ServiceCard
+              key={service.title}
+              service={service}
+              index={index}
+              onServiceClick={handleServiceClick}
+            />
           ))}
         </div>
 
         {/* Mobile: Carousel */}
         <div className="md:hidden relative">
-          <div ref={carouselRef} className="overflow-hidden" onTouchStart={handleTouchStart}
+          <div
+            ref={carouselRef}
+            className="overflow-hidden"
+            onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}>
+            onTouchEnd={handleTouchEnd}
+          >
             <div
               className="flex transition-transform duration-300 ease-in-out"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -259,26 +280,37 @@ const Services = () => {
                 const Icon = service.icon;
                 return (
                   <div key={index} className="w-full flex-shrink-0 px-2">
-                    <Card className="group hover:shadow-lg transition-all duration-300 gradient-card border-2 h-full">
-                      <CardHeader>
-                        <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                          <Icon className="w-7 h-7 text-primary" />
+                    <Card
+                      className={`group relative overflow-hidden transition-all duration-300 
+                        bg-card border-2 ${service.color.border} shadow-sm h-full`}
+                    >
+                      {/* Gradiente sutil */}
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-br ${service.color.gradient} pointer-events-none`}
+                      />
+
+                      {/* Linha decorativa no topo */}
+                      <div className={`absolute top-0 left-0 right-0 h-1 ${service.color.accent} opacity-80`} />
+
+                      <CardHeader className="relative">
+                        <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 ${service.color.icon}`}>
+                          <Icon className={`w-7 h-7 ${service.color.iconText.split(" ")[0]}`} />
                         </div>
                         <CardTitle className="text-xl">{service.title}</CardTitle>
                         <CardDescription className="text-base">{service.description}</CardDescription>
                       </CardHeader>
-                      <CardContent className="space-y-4">
+                      <CardContent className="relative space-y-4">
                         <ul className="space-y-2">
                           {service.features.map((feature, i) => (
                             <li key={i} className="flex items-start gap-2 text-sm">
-                              <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
+                              <div className={`w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0 ${service.color.accent}`} />
                               <span className="text-muted-foreground">{feature}</span>
                             </li>
                           ))}
                         </ul>
                         <Button
                           variant="outline"
-                          className="w-full"
+                          className="w-full border-2"
                           onClick={() => handleServiceClick(service.title)}
                         >
                           Saiba mais
@@ -313,10 +345,11 @@ const Services = () => {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${currentSlide === index
-                  ? "bg-primary w-8"
-                  : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                  }`}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                  currentSlide === index
+                    ? "bg-primary w-8"
+                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                }`}
                 aria-label={`Ir para slide ${index + 1}`}
               />
             ))}
@@ -326,8 +359,9 @@ const Services = () => {
         {/* Additional info */}
         <div
           ref={info.ref}
-          className={`mt-16 grid md:grid-cols-3 gap-8 text-center transition-all duration-700 ${info.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
+          className={`mt-16 grid md:grid-cols-3 gap-8 text-center transition-all duration-700 ${
+            info.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
         >
           <div className="space-y-2">
             <Users className="w-8 h-8 text-primary mx-auto" />
