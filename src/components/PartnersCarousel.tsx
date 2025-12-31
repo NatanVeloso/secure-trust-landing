@@ -121,7 +121,7 @@ const PartnersCarousel = () => {
         >
           <motion.div variants={itemVariants} className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Nossos Parceiros
+              Nossos <span className="text-primary">Parceiros</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Trabalhamos com as maiores e mais confiáveis seguradoras do mercado
