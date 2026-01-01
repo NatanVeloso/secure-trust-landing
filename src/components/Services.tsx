@@ -201,7 +201,7 @@ const Services = () => {
     <section id="servicos" className="relative py-24 bg-background overflow-hidden">
       {/* Elementos decorativos de background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-32 -right-32 w-96 h-96">
+        <div className="absolute mt-40 -top-32 -right-32 w-96 h-96">
           <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 to-transparent blur-3xl"></div>
           <div className="absolute inset-12 rounded-full bg-gradient-to-br from-primary/5 to-transparent blur-2xl"></div>
           <div className="absolute inset-24 rounded-full border border-primary/10"></div>
