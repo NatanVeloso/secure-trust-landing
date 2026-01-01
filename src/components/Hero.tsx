@@ -182,7 +182,7 @@ const Hero = () => {
                 {/* Stats abaixo do escudo */}
                 <div className="flex justify-center gap-8 mt-6 pt-6 border-t border-slate-200 dark:border-slate-700">
                   <div className="text-center">
-                    <p className="text-2xl sm:text-3xl font-bold text-primary">+15 mil</p>
+                    <p className="text-2xl sm:text-3xl font-bold text-primary">+5 mil</p>
                     <p className="text-xs sm:text-sm text-slate-500">clientes</p>
                   </div>
                   <div className="w-px bg-slate-200 dark:bg-slate-700" />
