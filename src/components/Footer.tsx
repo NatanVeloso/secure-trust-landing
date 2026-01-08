@@ -59,7 +59,7 @@ const Footer = () => {
               className={`h-12 w-auto ${mounted && theme === "light" ? "brightness-0 invert" : ""}`}
             />
             <p className="text-background/70 text-sm leading-relaxed">
-              Protegendo o que é importante para você há mais de 15 anos com
+              Protegendo o que é importante para você há mais de 10 anos com
               transparência e compromisso.
             </p>
             <Button
