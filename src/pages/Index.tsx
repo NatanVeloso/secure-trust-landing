@@ -13,7 +13,7 @@ import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import PartnersCarousel from "@/components/PartnersCarousel";
 
 const Index = () => {
-useEffect(() => {
+useEffect(() => { 
   const handleAnchorClick = (e: Event) => {
     const target = e.currentTarget as HTMLAnchorElement;
     const href = target.getAttribute("href");
