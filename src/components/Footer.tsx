@@ -24,21 +24,30 @@ const Footer = () => {
   const addresses = [
     {
       city: "Umuarama - PR",
-      label: "(Matriz)",
+      label: "",
       address: "Av. Presidente Castelo Branco, 3806 - Sala 1302A",
       cep: "CEP 87501-170",
-      phone: "(41) 99245-5013",
-      phoneLink: "tel:+5541002455013",
+      phone: "(44) 99992-7174 ",
+      phoneLink: "tel:+5555999927174",
       mapsUrl: "https://maps.google.com/maps?q=Av+Presidente+Castelo+Branco+3806+Umuarama+PR",
     },
     {
       city: "Curitiba - PR",
-      label: "",
-      address: "Edifício AR 3000 - Praça São Paulo da Cruz, 50 - Sala 1904, Juvevê",
+      label: "(Matriz)",
+      address: "Edificio AR 3000 - Praça São Paulo da Cruz, 50 - Sala 1904 - Juvevê",
       cep: "CEP 80030-480",
+      phone: "(41) 99245-5013",
+      phoneLink: "tel:+5541992455013",
+      mapsUrl: "https://www.google.com/maps/search/Edificio+AR+3000,+Praça+São+Paulo+da+Cruz,+50,+Juvevê,+Curitiba,+PR",
+    },
+    {
+      city: "São Paulo - SP",
+      label: "",
+      address: "Avenida Paulista, 726, Sala 1202, Bela Vista, São Paulo-SP",
+      cep: "CEP 01310-910",
       phone: "(11) 92189-2608",
       phoneLink: "tel:+5511921892608",
-      mapsUrl: "https://maps.google.com/maps?q=Praça+São+Paulo+da+Cruz+50+Juvevê+Curitiba+PR",
+      mapsUrl: "https://www.google.com/maps/search/Avenida+Paulista,+726,+Sala+1202,+Bela+Vista,+São+Paulo,+SP",
     },
   ];
 
