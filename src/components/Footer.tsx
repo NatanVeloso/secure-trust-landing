@@ -24,7 +24,7 @@ const Footer = () => {
   const addresses = [
     {
       city: "Umuarama - PR",
-      label: "",
+      label: "(Matriz)",
       address: "Av. Presidente Castelo Branco, 3806 - Sala 1302A",
       cep: "CEP 87501-170",
       phone: "(44) 99992-7174 ",
@@ -33,7 +33,7 @@ const Footer = () => {
     },
     {
       city: "Curitiba - PR",
-      label: "(Matriz)",
+      label: "",
       address: "Edificio AR 3000 - Praça São Paulo da Cruz, 50 - Sala 1904 - Juvevê",
       cep: "CEP 80030-480",
       phone: "(41) 99245-5013",
