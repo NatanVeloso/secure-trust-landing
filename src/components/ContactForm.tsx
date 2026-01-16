@@ -240,7 +240,7 @@ const ContactForm = () => {
             >
               <div className="flex items-center gap-3 mb-4">
                 <CheckCircle className="h-5 w-5 lg:h-6 lg:w-6 shrink-0" />
-                <h3 className="font-bold text-base lg:text-lg">Por que escolher a SegX?</h3>
+                <h3 className="font-bold text-base lg:text-lg">Por que escolher a SEGX?</h3>
               </div>
               <motion.ul
                 variants={containerVariants}

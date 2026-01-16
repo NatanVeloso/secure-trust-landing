@@ -27,7 +27,7 @@ const testimonials = [
     role: "Professora",
     location: "Belo Horizonte, MG",
     content:
-      "Já tinha seguro em outra empresa, mas a SegX ofereceu condições muito melhores e um atendimento personalizado. Fiz a troca e não me arrependo!",
+      "Já tinha seguro em outra empresa, mas a SEGX ofereceu condições muito melhores e um atendimento personalizado. Fiz a troca e não me arrependo!",
     rating: 5,
     avatar: "AC",
   },

@@ -111,7 +111,7 @@ const AboutUs = () => {
               Mais de <span className="text-gradient">10 anos</span> protegendo sonhos e conquistas
             </h2>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              A SegX nasceu com a missão de oferecer proteção acessível e de qualidade
+              A SEGX nasceu com a missão de oferecer proteção acessível e de qualidade
               para famílias e empresas brasileiras. Desde 2009, trabalhamos com as
               melhores seguradoras do mercado para garantir tranquilidade aos nossos clientes.
             </p>
@@ -171,7 +171,7 @@ const AboutUs = () => {
               <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border-4 border-background">
                 <img
                   src={socios}
-                  alt="Sócios da SegX Seguros"
+                  alt="Sócios da SEGX Seguros"
                   className="w-full h-full object-cover object-top"
                 />
                 {/* Overlay gradiente */}
@@ -188,7 +188,7 @@ const AboutUs = () => {
                   transition={{ duration: 0.4, delay: 0.1 }}
                 >
                   <h3 className="text-2xl font-bold mb-2">Willian & Alessandro</h3>
-                  <p className="text-white/90">Fundadores da SegX Seguros</p>
+                  <p className="text-white/90">Fundadores da SEGX Seguros</p>
                 </motion.div>
               </div>
             </motion.div>

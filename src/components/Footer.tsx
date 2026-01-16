@@ -64,7 +64,7 @@ const Footer = () => {
           <div className="space-y-4">
             <img
               src={logo}
-              alt="SegX Seguros"
+              alt="SEGX Seguros"
               className={`h-12 w-auto ${mounted && theme === "light" ? "brightness-0 invert" : ""}`}
             />
             <p className="text-background/70 text-sm leading-relaxed">
@@ -208,7 +208,7 @@ const Footer = () => {
             </div>
           </div>
           <p className="text-center mt-6 text-background/70 text-sm">
-            © {new Date().getFullYear()} SegX Seguros. Todos os direitos reservados.
+            © {new Date().getFullYear()} SEGX Seguros. Todos os direitos reservados.
           </p>
         </div>
       </div>

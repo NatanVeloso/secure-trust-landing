@@ -11,9 +11,9 @@ interface SEOProps {
 }
 
 const SEO = ({
-  title = "SegX Seguros",
+  title = "SEGX Seguros",
   description = "Seguros personalizados com atendimento humano e transparência. Proteção completa para auto, residencial, vida e empresarial. +10 anos protegendo famílias e empresas. Faça sua cotação online agora!",
-  keywords = "seguro auto, seguro veicular, seguro carro, seguro residencial, seguro de vida, seguro empresarial, cotação seguro online, seguro barato, seguro confiável, corretora de seguros, SegX Seguros",
+  keywords = "seguro auto, seguro veicular, seguro carro, seguro residencial, seguro de vida, seguro empresarial, cotação seguro online, seguro barato, seguro confiável, corretora de seguros, SEGX Seguros",
   image = "https://www.segxseguros.com.br/og-image.jpg",
   url = "https://www.segxseguros.com.br/",
   type = "website",
@@ -41,7 +41,7 @@ const SEO = ({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={fullImageUrl} />
-      <meta property="og:site_name" content="SegX Seguros" />
+      <meta property="og:site_name" content="SEGX Seguros" />
       <meta property="og:locale" content="pt_BR" />
 
       {/* Twitter */}

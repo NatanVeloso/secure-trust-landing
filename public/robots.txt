@@ -1,4 +1,4 @@
-# robots.txt for SegX Seguros
+# robots.txt for SEGX Seguros
 User-agent: *
 Allow: /
 Disallow: /admin/

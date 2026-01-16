@@ -105,7 +105,7 @@ const WhyChooseUs = () => {
             </div>
             <h2 className="text-4xl md:text-5xl font-bold">
               Por que escolher a<br />
-              <span className="text-gradient">SegX Seguros</span>?
+              <span className="text-gradient">SEGX Seguros</span>?
             </h2>
             <p className="text-xl text-muted-foreground">
               Somos referência em seguros pela combinação de experiência, compromisso e atendimento

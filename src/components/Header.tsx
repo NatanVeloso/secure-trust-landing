@@ -26,7 +26,7 @@ const Header = () => {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <div className="flex items-center flex-1">
-              <img src={logo} alt="SegX Seguros" className="h-12 w-auto dark:brightness-0 dark:invert" />
+              <img src={logo} alt="SEGX Seguros" className="h-12 w-auto dark:brightness-0 dark:invert" />
             </div>
 
             {/* Desktop Navigation */}
@@ -81,7 +81,7 @@ const Header = () => {
         )}
       >
         <div className="flex justify-between items-center p-4 border-b">
-          <img src={logo} alt="SegX Seguros" className="h-10 w-auto dark:brightness-0 dark:invert" />
+          <img src={logo} alt="SEGX Seguros" className="h-10 w-auto dark:brightness-0 dark:invert" />
           <button onClick={closeMenu} className="p-2 rounded-md hover:bg-muted">
             <X className="w-6 h-6" />
           </button>

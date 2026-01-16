@@ -66,7 +66,7 @@ const AboutUs = () => {
                 <div className="relative bg-card/90 backdrop-blur-xl rounded-[22px] p-1">
                   <img
                     src={socios}
-                    alt="Sócios da SegX Seguros"
+                    alt="Sócios da SEGX Seguros"
                     className="w-full h-auto max-h-[600px] rounded-2xl object-contain"
                   />
                 </div>
