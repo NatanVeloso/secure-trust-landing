@@ -54,7 +54,10 @@ const Header = () => {
                   Fale Conosco
                 </a>
               </Button>
-              <button onClick={toggleMenu} className="md:hidden p-2 rounded-md hover:bg-muted transition">
+              <button
+                onClick={toggleMenu} className="md:hidden p-2 rounded-md hover:bg-muted transition"
+                aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
+              >
                 {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
@@ -82,7 +85,7 @@ const Header = () => {
       >
         <div className="flex justify-between items-center p-4 border-b">
           <img src={logo} alt="SEGX Seguros" className="h-10 w-auto dark:brightness-0 dark:invert" />
-          <button onClick={closeMenu} className="p-2 rounded-md hover:bg-muted">
+          <button onClick={closeMenu} className="p-2 rounded-md hover:bg-muted" aria-label="Fechar menu">
             <X className="w-6 h-6" />
           </button>
         </div>

@@ -13,39 +13,39 @@ import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import PartnersCarousel from "@/components/PartnersCarousel";
 
 const Index = () => {
-useEffect(() => { 
-  const handleAnchorClick = (e: Event) => {
-    const target = e.currentTarget as HTMLAnchorElement;
-    const href = target.getAttribute("href");
-    
-    if (href && href.startsWith("#") && href !== "#") {
-      e.preventDefault();
-      const element = document.querySelector(href);
-      
-      if (element) {
-        const headerOffset = 80;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.scrollY - headerOffset;
+  useEffect(() => {
+    const handleAnchorClick = (e: Event) => {
+      const target = e.currentTarget as HTMLAnchorElement;
+      const href = target.getAttribute("href");
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
+      if (href && href.startsWith("#") && href !== "#") {
+        e.preventDefault();
+        const element = document.querySelector(href);
+
+        if (element) {
+          const headerOffset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        }
       }
-    }
-  };
+    };
 
-  const links = document.querySelectorAll('a[href^="#"]');
-  links.forEach((link) => {
-    link.addEventListener("click", handleAnchorClick);
-  });
-
-  return () => {
+    const links = document.querySelectorAll('a[href^="#"]');
     links.forEach((link) => {
-      link.removeEventListener("click", handleAnchorClick);
+      link.addEventListener("click", handleAnchorClick);
     });
-  };
-}, []);
+
+    return () => {
+      links.forEach((link) => {
+        link.removeEventListener("click", handleAnchorClick);
+      });
+    };
+  }, []);
 
   return (
     <div className="min-h-screen">

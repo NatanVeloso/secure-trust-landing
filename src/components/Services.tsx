@@ -92,10 +92,9 @@ const ServiceCard = ({
         bg-card border-2 ${service.color.border} 
         shadow-sm hover:shadow-2xl ${service.color.glow}
         hover:-translate-y-2 transition-all duration-300
-        h-full ${
-          cardAnim.isVisible
-            ? "opacity-100 translate-x-0"
-            : `opacity-0 ${isEven ? "-translate-x-12" : "translate-x-12"}`
+        h-full ${cardAnim.isVisible
+          ? "opacity-100 translate-x-0"
+          : `opacity-0 ${isEven ? "-translate-x-12" : "translate-x-12"}`
         }`}
       style={{
         transitionDelay: cardAnim.isVisible ? "0ms" : `${index * 150}ms`,
@@ -235,9 +234,8 @@ const Services = () => {
       <div className="container relative z-10 mx-auto px-4">
         <div
           ref={header.ref}
-          className={`text-center max-w-3xl mx-auto mb-16 space-y-4 transition-all duration-700 ${
-            header.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          className={`text-center max-w-3xl mx-auto mb-16 space-y-4 transition-all duration-700 ${header.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-4">
             <Shield className="w-4 h-4 text-primary" />
@@ -345,11 +343,10 @@ const Services = () => {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                  currentSlide === index
+                className={`h-3 rounded-full transition-all duration-300 ${currentSlide === index
                     ? "bg-primary w-8"
-                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                }`}
+                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50 w-3"
+                  }`}
                 aria-label={`Ir para slide ${index + 1}`}
               />
             ))}
@@ -359,9 +356,8 @@ const Services = () => {
         {/* Additional info */}
         <div
           ref={info.ref}
-          className={`mt-16 grid md:grid-cols-3 gap-8 text-center transition-all duration-700 ${
-            info.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          className={`mt-16 grid md:grid-cols-3 gap-8 text-center transition-all duration-700 ${info.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
         >
           <div className="space-y-2">
             <Users className="w-8 h-8 text-primary mx-auto" />
